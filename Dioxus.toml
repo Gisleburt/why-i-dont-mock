@@ -1,11 +1,11 @@
 [application]
-name = "Why I don't mock 💩"
+name = "Why I don't mock"
 default_platform = "web"
 out_dir = "docs"
 asset_dir = "public"
 
 [web.app]
-title = "Why I don't mock 💩"
+title = "Why I don't mock"
 
 [web.watcher]
 watch_path = ["src", "public"]
