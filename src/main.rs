@@ -6,6 +6,7 @@ use dioxus::prelude::*;
 use crate::components::ImpressGroup::ImpressGroup;
 use crate::components::ImpressInit::ImpressInit;
 use crate::components::Step::Step;
+use crate::components::Notes::Notes;
 
 fn main() {
     // launch the web app
@@ -19,7 +20,10 @@ fn App(cx: Scope) -> Element {
             Step {
                 name: "step-1",
                 x: 0,
-                "Step 1"
+                "Step 1",
+                Notes {
+                    p {"Here's something that will be hidden later"}
+                }
             }
             Step {
                 name: "step-2",

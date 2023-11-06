@@ -14,5 +14,8 @@ watch_path = ["src", "public"]
 script = [
     "./impress.js"
 ]
+style = [
+    "./slides.css"
+]
 
 [web.resource.dev]
