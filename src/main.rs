@@ -1,13 +1,13 @@
 #![allow(non_snake_case)]
 
-mod components;
+mod impress;
 
 // import the prelude to get access to the `rsx!` macro and the `Scope` and `Element` types
 use dioxus::prelude::*;
-use crate::components::ImpressGroup::ImpressGroup;
-use crate::components::ImpressInit::ImpressInit;
-use crate::components::Step::Step;
-use crate::components::Notes::Notes;
+use crate::impress::ImpressGroup::ImpressGroup;
+use crate::impress::ImpressInit::ImpressInit;
+use crate::impress::Step::Step;
+use crate::impress::Notes::Notes;
 
 fn main() {
     // launch the web app
@@ -32,10 +32,19 @@ fn App(cx: Scope) -> Element {
 
             Step { name: "unit-tests-are-awesome", x: 0 * x_step, y: 1 * y_step,
                 h2 { "Unit Tests are Awesome" }
+                Notes {
+                    p { "Those that know me, know that I _love_ tests" }
+                    p {
+                        "I don't do well with compliments so when a human tells me my code is ",
+                        "good, I don't necessarily believe them, but when a computer tells me my ",
+                        "code is good, that feels good."
+                    }
+                }
             }
 
             Step { name: "unit-test-example", x: 1 * x_step, y: 1 * y_step,
                 h3 { "Example Code:" }
+                code { "" }
                 h3 { "Example Unit Test:" }
             }
 
