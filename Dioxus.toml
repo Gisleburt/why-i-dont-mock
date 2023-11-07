@@ -12,10 +12,11 @@ watch_path = ["src", "public"]
 
 [web.resource]
 script = [
-    "./impress.js"
+    "./impress.js",
 ]
 style = [
-    "./slides.css"
+    "./reset.css",
+    "./base.css",
 ]
 
 [web.resource.dev]
