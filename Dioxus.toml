@@ -13,8 +13,12 @@ watch_path = ["src", "public"]
 [web.resource]
 script = [
     "./impress.js",
+    "https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js",
+    "https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/go.min.js",
 ]
 style = [
+    "https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/default.min.css",
+    "https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/a11y-dark.min.css",
     "./reset.css",
     "./base.css",
 ]

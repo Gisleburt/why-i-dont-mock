@@ -1,9 +1,12 @@
 #![allow(non_snake_case)]
 
 mod impress;
+mod code;
 
 // import the prelude to get access to the `rsx!` macro and the `Scope` and `Element` types
 use dioxus::prelude::*;
+use crate::code::highlight::HighlightInit;
+use crate::code::typescript::Typescript;
 use crate::impress::ImpressGroup::ImpressGroup;
 use crate::impress::ImpressInit::ImpressInit;
 use crate::impress::Step::Step;
@@ -44,7 +47,11 @@ fn App(cx: Scope) -> Element {
 
             Step { name: "unit-test-example", x: 1 * x_step, y: 1 * y_step,
                 h3 { "Example Code:" }
-                code { "" }
+                Typescript {
+                    "class Test {{\n",
+                    "  protected awesome = 'awesome';\n",
+                    "}}"
+                }
                 h3 { "Example Unit Test:" }
             }
 
@@ -110,5 +117,6 @@ fn App(cx: Scope) -> Element {
             }
         }
         ImpressInit {}
+        HighlightInit {}
     })
 }
