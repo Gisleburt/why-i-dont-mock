@@ -38,6 +38,7 @@ pub fn Step<'a>(cx: Scope<'a, StepProps<'a>>) -> Element {
     cx.render(rsx!(
         div {
             class: "step",
+            id: "{cx.props.name}",
             "data-x": "{cx.props.x}",
             "data-y": "{cx.props.y}",
             "data-z": "{cx.props.z}",
