@@ -10,7 +10,6 @@ use crate::{
     impress::{ImpressGroup, ImpressInit, Step}
 };
 use crate::slides::intro::Intro;
-use crate::slides::slide::Slide;
 use crate::slides::unit_tests::{AreAwesome, AreLoved, UnitTestExample};
 
 fn main() {
@@ -28,13 +27,13 @@ fn App(cx: Scope) -> Element {
 
     cx.render(rsx! {
         ImpressGroup {
-            Slide { Intro{}, name: "intro", y: row(0), x: col(0) }
+            Step { Intro{}, name: "intro", y: row(0), x: col(0) }
 
-            Slide { AreAwesome{}, name: "unit-tests-are-awesome", y: row(1), x: col(0) }
+            Step { AreAwesome{}, name: "unit-tests-are-awesome", y: row(1), x: col(0) }
 
-            Slide { AreLoved{}, name: "unit-tests-are-love", y: row(1), x: col(1),}
+            Step { AreLoved{}, name: "unit-tests-are-love", y: row(1), x: col(1),}
 
-            Slide { UnitTestExample{} name: "unit-test-example", y: row(1), x: col(2) }
+            Step { UnitTestExample{} name: "unit-test-example", y: row(1), x: col(2) }
 
             Step { name: "external-systems", x: 0* x_step, y: 2 * y_step,
                 h2 { "Talking to External Systems" }
