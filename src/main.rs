@@ -2,15 +2,16 @@
 
 mod impress;
 mod code;
+mod slides;
 
-// import the prelude to get access to the `rsx!` macro and the `Scope` and `Element` types
 use dioxus::prelude::*;
-use crate::code::highlight::HighlightInit;
-use crate::code::typescript::Typescript;
-use crate::impress::ImpressGroup::ImpressGroup;
-use crate::impress::ImpressInit::ImpressInit;
-use crate::impress::Step::Step;
-use crate::impress::Notes::Notes;
+use crate::{
+    code::HighlightInit,
+    code::Typescript,
+    impress::{ImpressGroup, ImpressInit, Step, Notes}
+};
+use crate::slides::intro::Intro;
+use crate::slides::slide::Slide;
 
 fn main() {
     // launch the web app
@@ -19,40 +20,60 @@ fn main() {
 
 // create a component that renders a div with the text "Hello, world!"
 fn App(cx: Scope) -> Element {
-    let x_step = 1000;
-    let y_step = 800;
+    let x_step = 1280 + 100;
+    let y_step = 720 + 100;
+
     cx.render(rsx! {
         ImpressGroup {
-            Step { name: "intro", x: 0 * x_step, y: 0 * y_step,
-                h1 { "Why I don't mock 💩" }
-                h2 { "Daniel Mason" }
-                Notes {
-                    p { "Hi, in case you don't know I'm Daniel and I love testing" }
-                    p { "But testing interconnected things gets complex" }
-                    p { "So I want to show you how I manage that complexity" }
-                }
-            }
+            Slide { Intro{}, name: "intro", x: 0 * x_step, y: 0 * y_step }
 
             Step { name: "unit-tests-are-awesome", x: 0 * x_step, y: 1 * y_step,
                 h2 { "Unit Tests are Awesome" }
                 Notes {
-                    p { "Those that know me, know that I _love_ tests" }
+                    p { "Unit Tests are awesome" }
+                    p { "Those that know me, know that"}
+                }
+            }
+
+            Step { name: "unit-tests-are-love", x: 1 * x_step, y: 1 * y_step,
+                h3 {"I love unit tests"}
+                p { "<insert meme image>" }
+                Notes {
+                    p { "I _love_ tests" }
                     p {
                         "I don't do well with compliments so when a human tells me my code is ",
                         "good, I don't necessarily believe them, but when a computer tells me my ",
                         "code is good, that feels good."
                     }
+                    p { "Lets write a test." }
                 }
             }
 
-            Step { name: "unit-test-example", x: 1 * x_step, y: 1 * y_step,
+            Step { name: "unit-test-example", x: 2 * x_step, y: 1 * y_step,
                 h3 { "Example Code:" }
                 Typescript {
-                    "class Test {{\n",
-                    "  protected awesome = 'awesome';\n",
+                    "const greet = (user: User): Promise<string> => {{\n",
+                    "  return `Hello {{user.casualName}}`;\n",
                     "}}"
                 }
                 h3 { "Example Unit Test:" }
+                Typescript {
+                    "it('should greet the user', () => {{\n",
+                    "  const user = createUser({{ casualName: Daniel }});\n",
+                    "  expect(greet(user)).toBe('Hello Daniel');\n",
+                    "}});"
+                }
+                Notes {
+                    p {
+                        "Here's an example of some code that takes a user, and writes a custom ",
+                        "greeting for them"
+                    }
+                    p { "And we use a unit test to check that it behaves the way we expect" }
+                }
+            }
+
+            Step { name: "external-systems", x: 0* x_step, y: 2 * y_step,
+                h2 { "Talking to External Systems" }
             }
 
             Step { name: "integration-tests-are-awesome", x: 0 * x_step, y: 2 * y_step,
