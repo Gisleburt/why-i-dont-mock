@@ -3,14 +3,16 @@
 mod impress;
 mod code;
 mod slides;
+mod pos;
 
 use dioxus::prelude::*;
 use crate::{
+    pos::AutoReposition,
     code::HighlightInit,
-    impress::{ImpressGroup, ImpressInit, Step}
+    impress::{ImpressGroup, ImpressInit, Step},
+    slides::intro::Intro,
+    slides::unit_tests::{AreAwesome, AreLoved, UnitTestExample}
 };
-use crate::slides::intro::Intro;
-use crate::slides::unit_tests::{AreAwesome, AreLoved, UnitTestExample};
 
 fn main() {
     // launch the web app
@@ -22,81 +24,84 @@ fn App(cx: Scope) -> Element {
     let y_step = 720 + 100;
     let x_step = 1280 + 100;
 
-    let row = |row: i32| row * y_step;
-    let col = |col: i32| col * x_step;
+    let auto_pos = RefCell::new(AutoReposition::new());
+
+    let row = || auto_pos.borrow_mut().row() * y_step;
+    let new_row = || auto_pos.borrow_mut().new_row() * y_step;
+    let col = || auto_pos.borrow_mut().col() * x_step;
 
     cx.render(rsx! {
         ImpressGroup {
-            Step { Intro{}, name: "intro", y: row(0), x: col(0) }
+            Step { Intro{}, name: "intro", y: new_row(), x: col() }
 
-            Step { AreAwesome{}, name: "unit-tests-are-awesome", y: row(1), x: col(0) }
+            Step { AreAwesome{}, name: "unit-tests-are-awesome", y: new_row(), x: col() }
 
-            Step { AreLoved{}, name: "unit-tests-are-love", y: row(1), x: col(1),}
+            Step { AreLoved{}, name: "unit-tests-are-love", y: row(), x: col(),}
 
-            Step { UnitTestExample{} name: "unit-test-example", y: row(1), x: col(2) }
+            Step { UnitTestExample{} name: "unit-test-example", y: row(), x: col() }
 
-            Step { name: "external-systems", x: 0* x_step, y: 2 * y_step,
-                h2 { "Talking to External Systems" }
+            Step { name: "external-systems", y: new_row(), x: col(),
+                h2 { "External Systems" }
             }
 
-            Step { name: "integration-tests-are-awesome", x: 0 * x_step, y: 2 * y_step,
+            Step { name: "integration-tests-are-awesome", y: new_row(), x: col(),
                 h2 { "Integration Tests are Awesome" }
             }
 
-            Step { name: "integration-test-example", x: 1 * x_step, y: 2 * y_step,
+            Step { name: "integration-test-example", y: row(), x: col(),
                 h3 { "Example Code:" }
                 h3 { "Example Integration Test:" }
             }
 
-            Step { name: "dependency-injection-is-awesome", x: 0 * x_step, y: 3 * y_step,
+            Step { name: "dependency-injection-is-awesome", y: new_row(), x: col(),
                 h2 {"Dependency Injection is Awesome"}
             }
 
-            Step { name: "dependency-injection-example", x: 1 * x_step, y: 3 * y_step,
+            Step { name: "dependency-injection-example", y: row(), x: col(),
                 h3 { "Example Code:" }
                 h3 { "Example Test" }
                 p { "Wait... does this now need to be an integration test" }
             }
 
-            Step { name: "mocking", x: 0 * x_step, y: 4 * y_step,
+            Step { name: "mocking", y: new_row(), x: col(),
                 h2 {"Mocking is... well... it exists"}
             }
 
-            Step { name: "mocking-example", x: 1 * x_step, y: 4 * y_step,
+            Step { name: "mocking-example", y: row(), x: col(),
                 h3 { "Example Code:" }
                 h3 { "Example Mock" }
             }
 
-            Step { name: "mocking-problem", x: 2 * x_step, y: 4 * y_step,
+            Step { name: "mocking-problem", y: row(), x: col(),
                 h3 { "The problem with mocks" }
             }
 
-            Step { name: "ddd-is-awesome", x: 0 * x_step, y: 5 * y_step,
+            Step { name: "ddd-is-awesome", y: new_row(), x: col(),
                 h2 { "Domain Driven Development to the rescue!" }
             }
 
-            Step { name: "ddd-explainer", x: 1 * x_step, y: 5 * y_step,
+            Step { name: "ddd-explainer", y: row(), x: col(),
                 h3 { "What is DDD" }
                 p { "Ports and Adaptors" }
             }
 
-            Step { name: "ddd-test-adaptor", x: 2 * x_step, y: 5 * y_step,
+            Step { name: "ddd-test-adaptor", y: row(), x: col(),
                 h3 { "Test Adaptors" }
             }
 
-            Step { name: "ddd-integration-tests", x: 3 * x_step, y: 5 * y_step,
+            Step { name: "ddd-integration-tests", y: row(), x: col(),
                 h3 { "DDD Integration tests" }
             }
 
-            Step { name: "ddd-in-tests", x: 4 * x_step, y: 5 * y_step,
+            Step { name: "ddd-in-tests", y: row(), x: col(),
                 h3 { "Test adaptor usage" }
             }
 
-            Step { name: "ddd-unleashed", x: 0 * x_step, y: 6 * y_step,
+            Step { name: "ddd-unleashed", y: row(), x: col(),
                 h2 { "Why stop there" }
             }
 
-            Step { name: "ddd-adaptors-in-the-wild", x: 1 * x_step, y: 6 * y_step,
+            Step { name: "ddd-adaptors-in-the-wild", y: row(), x: col(),
                 h3 { "Expanded use cases" }
             }
         }
