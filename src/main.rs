@@ -7,11 +7,11 @@ mod slides;
 use dioxus::prelude::*;
 use crate::{
     code::HighlightInit,
-    code::Typescript,
-    impress::{ImpressGroup, ImpressInit, Step, Notes}
+    impress::{ImpressGroup, ImpressInit, Step}
 };
 use crate::slides::intro::Intro;
 use crate::slides::slide::Slide;
+use crate::slides::unit_tests::{AreAwesome, AreLoved, UnitTestExample};
 
 fn main() {
     // launch the web app
@@ -20,57 +20,21 @@ fn main() {
 
 // create a component that renders a div with the text "Hello, world!"
 fn App(cx: Scope) -> Element {
-    let x_step = 1280 + 100;
     let y_step = 720 + 100;
+    let x_step = 1280 + 100;
+
+    let row = |row: i32| row * y_step;
+    let col = |col: i32| col * x_step;
 
     cx.render(rsx! {
         ImpressGroup {
-            Slide { Intro{}, name: "intro", x: 0 * x_step, y: 0 * y_step }
+            Slide { Intro{}, name: "intro", y: row(0), x: col(0) }
 
-            Step { name: "unit-tests-are-awesome", x: 0 * x_step, y: 1 * y_step,
-                h2 { "Unit Tests are Awesome" }
-                Notes {
-                    p { "Unit Tests are awesome" }
-                    p { "Those that know me, know that"}
-                }
-            }
+            Slide { AreAwesome{}, name: "unit-tests-are-awesome", y: row(1), x: col(0) }
 
-            Step { name: "unit-tests-are-love", x: 1 * x_step, y: 1 * y_step,
-                h3 {"I love unit tests"}
-                p { "<insert meme image>" }
-                Notes {
-                    p { "I _love_ tests" }
-                    p {
-                        "I don't do well with compliments so when a human tells me my code is ",
-                        "good, I don't necessarily believe them, but when a computer tells me my ",
-                        "code is good, that feels good."
-                    }
-                    p { "Lets write a test." }
-                }
-            }
+            Slide { AreLoved{}, name: "unit-tests-are-love", y: row(1), x: col(1),}
 
-            Step { name: "unit-test-example", x: 2 * x_step, y: 1 * y_step,
-                h3 { "Example Code:" }
-                Typescript {
-                    "const greet = (user: User): Promise<string> => {{\n",
-                    "  return `Hello {{user.casualName}}`;\n",
-                    "}}"
-                }
-                h3 { "Example Unit Test:" }
-                Typescript {
-                    "it('should greet the user', () => {{\n",
-                    "  const user = createUser({{ casualName: Daniel }});\n",
-                    "  expect(greet(user)).toBe('Hello Daniel');\n",
-                    "}});"
-                }
-                Notes {
-                    p {
-                        "Here's an example of some code that takes a user, and writes a custom ",
-                        "greeting for them"
-                    }
-                    p { "And we use a unit test to check that it behaves the way we expect" }
-                }
-            }
+            Slide { UnitTestExample{} name: "unit-test-example", y: row(1), x: col(2) }
 
             Step { name: "external-systems", x: 0* x_step, y: 2 * y_step,
                 h2 { "Talking to External Systems" }
