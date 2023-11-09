@@ -11,7 +11,7 @@ use crate::{
     code::HighlightInit,
     impress::{ImpressGroup, ImpressInit, Step},
     slides::intro::Intro,
-    slides::unit_tests::{AreAwesome, AreLoved, UnitTestExample}
+    slides::unit_tests::{AreAwesome, AreLoved, UnitTestExample},
 };
 
 fn main() {
@@ -21,8 +21,13 @@ fn main() {
 
 // create a component that renders a div with the text "Hello, world!"
 fn App(cx: Scope) -> Element {
-    let y_step = 720 + 100;
-    let x_step = 1280 + 100;
+    let height = 720;
+    let width = 1280;
+    let margin = 100;
+    let height_buffer = ((margin / 10) * 9 * 3);
+    let width_buffer = ((margin / 10) * 16 * 3);
+    let y_step = height + margin;
+    let x_step = width + margin;
 
     let auto_pos = RefCell::new(AutoReposition::new());
 
@@ -31,7 +36,7 @@ fn App(cx: Scope) -> Element {
     let col = || auto_pos.borrow_mut().col() * x_step;
 
     cx.render(rsx! {
-        ImpressGroup {
+        ImpressGroup { width: width + width_buffer, height: height + height_buffer,
             Step { Intro{}, name: "intro", y: new_row(), x: col() }
 
             Step { AreAwesome{}, name: "unit-tests-are-awesome", y: new_row(), x: col() }
@@ -43,6 +48,8 @@ fn App(cx: Scope) -> Element {
             Step { name: "external-systems", y: new_row(), x: col(),
                 h2 { "External Systems" }
             }
+
+            Step { name: "hexagonal-architecture", y: row(), x: col() }
 
             Step { name: "integration-tests-are-awesome", y: new_row(), x: col(),
                 h2 { "Integration Tests are Awesome" }
