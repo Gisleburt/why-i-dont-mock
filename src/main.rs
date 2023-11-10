@@ -1,18 +1,22 @@
 #![allow(non_snake_case)]
 
-mod impress;
 mod code;
-mod slides;
+mod impress;
+mod mermaid;
 mod pos;
+mod slides;
 
-use dioxus::prelude::*;
 use crate::{
-    pos::AutoReposition,
     code::HighlightInit,
+    code::Typescript,
     impress::{ImpressGroup, ImpressInit, Step},
+    mermaid::{Mermaid, MermaidInit},
+    pos::AutoReposition,
     slides::intro::Intro,
     slides::unit_tests::{AreAwesome, AreLoved, UnitTestExample},
 };
+use dioxus::prelude::*;
+use indoc::indoc;
 
 fn main() {
     // launch the web app
@@ -24,8 +28,8 @@ fn App(cx: Scope) -> Element {
     let height = 720;
     let width = 1280;
     let margin = 100;
-    let height_buffer = ((margin / 10) * 9 * 3);
-    let width_buffer = ((margin / 10) * 16 * 3);
+    let height_buffer = (margin / 10) * 9 * 3;
+    let width_buffer = (margin / 10) * 16 * 3;
     let y_step = height + margin;
     let x_step = width + margin;
 
@@ -47,9 +51,31 @@ fn App(cx: Scope) -> Element {
 
             Step { name: "external-systems", y: new_row(), x: col(),
                 h2 { "External Systems" }
+                Mermaid {
+                    """
+                    graph LR
+                        A[App] --> B[Data Store]
+                    """
+                }
             }
 
-            Step { name: "hexagonal-architecture", y: row(), x: col() }
+            Step { name: "external-systems-interface", y: row(), x: col(),
+                h3 { "Example Database CRUD" }
+                Typescript { indoc! {"
+                    class UserStore {{
+                        constructor(private db: Database) {{}}
+
+                        async create(user: User): Promise<void> {{
+                            await this.db.insert(user);
+                        }}
+
+                        async readByEmail(email: String): Promise<User> {{
+                            const dbUser = await this.db.select('email', email);
+                            return userFromDb(dbUser);
+                        }}
+                    }}
+                "}}
+            }
 
             Step { name: "integration-tests-are-awesome", y: new_row(), x: col(),
                 h2 { "Integration Tests are Awesome" }
@@ -114,5 +140,6 @@ fn App(cx: Scope) -> Element {
         }
         ImpressInit {}
         HighlightInit {}
+        MermaidInit {}
     })
 }

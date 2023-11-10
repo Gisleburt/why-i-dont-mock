@@ -5,10 +5,7 @@ pub struct AutoReposition {
 
 impl AutoReposition {
     pub fn new() -> AutoReposition {
-        AutoReposition {
-            row: 0,
-            col: 0,
-        }
+        AutoReposition { row: 0, col: 0 }
     }
     pub fn row(&self) -> i32 {
         self.row

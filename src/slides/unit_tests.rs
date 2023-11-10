@@ -1,6 +1,7 @@
-use dioxus::prelude::*;
 use crate::code::Typescript;
 use crate::impress::Notes;
+use dioxus::prelude::*;
+use indoc::indoc;
 
 pub fn AreAwesome(cx: Scope) -> Element {
     cx.render(rsx!(
@@ -18,11 +19,11 @@ pub fn AreLoved(cx: Scope) -> Element {
         p { "<insert meme image>" }
         Notes {
             p { "I _love_ tests" }
-            p {
-                "I don't do well with compliments so when a human tells me my code is ",
-                "good, I don't necessarily believe them, but when a computer tells me my ",
-                "code is good, that feels good."
-            }
+            p { "
+                I don't do well with compliments so when a human tells me my code is
+                good, I don't necessarily believe them, but when a computer tells me my
+                code is good, that feels good.
+            " }
             p { "Lets write a test." }
         }
     ))
@@ -31,18 +32,18 @@ pub fn AreLoved(cx: Scope) -> Element {
 pub fn UnitTestExample(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Example Code:" }
-        Typescript {
-            "const greet = (user: User): Promise<string> => {{\n",
-            "  return `Hello {{user.casualName}}`;\n",
-            "}}"
-        }
+        Typescript { indoc! {"
+            const greet = (user: User): Promise<string> => {{
+                return `Hello {{user.casualName}}`;
+            }}
+        "}}
         h3 { "Example Unit Test:" }
-        Typescript {
-            "it('should greet the user', () => {{\n",
-            "  const user = createUser({{ casualName: Daniel }});\n",
-            "  expect(greet(user)).toBe('Hello Daniel');\n",
-            "}});"
-        }
+        Typescript { indoc! {"
+            it('should greet the user', () => {{
+                const user = createUser({{ casualName: Daniel }});
+                expect(greet(user)).toBe('Hello Daniel');
+            }});
+        "}}
         Notes {
             p {
                 "Here's an example of some code that takes a user, and writes a custom ",

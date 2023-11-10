@@ -1,5 +1,5 @@
-use dioxus::prelude::*;
 use crate::impress::Notes;
+use dioxus::prelude::*;
 
 pub fn Intro(cx: Scope) -> Element {
     cx.render(rsx!(
