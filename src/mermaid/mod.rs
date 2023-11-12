@@ -13,7 +13,7 @@ pub fn MermaidInit(cx: Scope) -> Element {
     cx.render(rsx!(
         script { "type": "module", indoc! {"
             import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-            mermaid.initialize({{ startOnLoad: false }});
+            mermaid.initialize({ startOnLoad: false });
             mermaid.run();
         "}}
     ))

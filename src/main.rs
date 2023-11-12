@@ -6,17 +6,18 @@ mod mermaid;
 mod pos;
 mod slides;
 
+use crate::slides::external_systems::{
+    Communicating, ExternalSystems, IntTestAreAwesome, IntegrationTestExample,
+};
 use crate::{
     code::HighlightInit,
-    code::Typescript,
     impress::{ImpressGroup, ImpressInit, Step},
-    mermaid::{Mermaid, MermaidInit},
+    mermaid::MermaidInit,
     pos::AutoReposition,
     slides::intro::Intro,
     slides::unit_tests::{AreAwesome, AreLoved, UnitTestExample},
 };
 use dioxus::prelude::*;
-use indoc::indoc;
 
 fn main() {
     // launch the web app
@@ -49,42 +50,15 @@ fn App(cx: Scope) -> Element {
 
             Step { UnitTestExample{} name: "unit-test-example", y: row(), x: col() }
 
-            Step { name: "external-systems", y: new_row(), x: col(),
-                h2 { "External Systems" }
-                Mermaid { indoc!{ "
-                    graph LR
-                        A[App] --> B[Data Store]
-                " }}
-            }
+            Step { ExternalSystems {}, name: "external-systems", y: new_row(), x: col() }
 
-            Step { name: "external-systems-interface", y: row(), x: col(),
-                h3 { "Example Database CRUD" }
-                Typescript { indoc! {"
-                    class UserStore {{
-                        constructor(private db: Database) {{}}
+            Step { Communicating {}, name: "external-systems-interface", y: row(), x: col() }
 
-                        async create(user: User): Promise<void> {{
-                            await this.db.insert(user);
-                        }}
+            Step { IntTestAreAwesome {}, name: "integration-tests-are-awesome", y: row(), x: col() }
 
-                        async readByEmail(email: String): Promise<User> {{
-                            const dbUser = await this.db.select('email', email);
-                            return userFromDb(dbUser);
-                        }}
-                    }}
-                "}}
-            }
+            Step { IntegrationTestExample {}, name: "integration-test-example", y: row(), x: col() }
 
-            Step { name: "integration-tests-are-awesome", y: new_row(), x: col(),
-                h2 { "Integration Tests are Awesome" }
-            }
-
-            Step { name: "integration-test-example", y: row(), x: col(),
-                h3 { "Example Code:" }
-                h3 { "Example Integration Test:" }
-            }
-
-            Step { name: "dependency-injection-is-awesome", y: new_row(), x: col(),
+            Step { name: "dependency-injection", y: new_row(), x: col(),
                 h2 {"Dependency Injection is Awesome"}
             }
 
