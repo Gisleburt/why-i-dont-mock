@@ -51,12 +51,10 @@ fn App(cx: Scope) -> Element {
 
             Step { name: "external-systems", y: new_row(), x: col(),
                 h2 { "External Systems" }
-                Mermaid {
-                    """
+                Mermaid { indoc!{ "
                     graph LR
                         A[App] --> B[Data Store]
-                    """
-                }
+                " }}
             }
 
             Step { name: "external-systems-interface", y: row(), x: col(),

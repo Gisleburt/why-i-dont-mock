@@ -33,22 +33,22 @@ pub fn UnitTestExample(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Example Code:" }
         Typescript { indoc! {"
-            const greet = (user: User): Promise<string> => {{
-                return `Hello {{user.casualName}}`;
+            const firstTimeUser = (user: User): Promise<string> => {{
+                return `Welcome {{user.casualName}}`;
             }}
         "}}
         h3 { "Example Unit Test:" }
         Typescript { indoc! {"
             it('should greet the user', () => {{
                 const user = createUser({{ casualName: Daniel }});
-                expect(greet(user)).toBe('Hello Daniel');
+                expect(firstTimeUser(user)).toBe('Welcome Daniel');
             }});
         "}}
         Notes {
-            p {
-                "Here's an example of some code that takes a user, and writes a custom ",
-                "greeting for them"
-            }
+            p { indoc! {"
+                Here's an example of some code that takes a user, and writes a custom greeting for
+                them
+            " }}
             p { "And we use a unit test to check that it behaves the way we expect" }
         }
     ))
