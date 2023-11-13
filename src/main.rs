@@ -6,6 +6,7 @@ mod mermaid;
 mod pos;
 mod slides;
 
+use crate::slides::conclusion::{Bonus, Conclusion, ThankYou};
 use crate::slides::ddd::{
     DddIsAwesome, HexagonalArchitecture, OurPortAndAdaptor, PortsAndAdaptors,
 };
@@ -97,6 +98,12 @@ fn App(cx: Scope) -> Element {
             Step { TestAllTheThings{}, name: "test-all-the-things", y: row(), x: col() }
 
             Step { IntegrationTestsForStubAdaptors{}, name: "int-tests-for-stubs", y: row(), x: col() }
+
+            Step { Conclusion{}, name: "conclusion", y: new_row(), x: col() }
+
+            Step { Bonus{}, name: "bonus-use", y: row(), x: col() }
+
+            Step { ThankYou{}, name: "thank-you", y: row(), x: col() }
         }
         ImpressInit {}
         HighlightInit {}
