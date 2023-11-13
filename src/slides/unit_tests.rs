@@ -48,7 +48,7 @@ pub fn UnitTestExample(cx: Scope) -> Element {
             p { indoc! {"
                 Here's an example of some code that takes a user, and writes a custom greeting for
                 them
-            " }}
+            "}}
             p { "And we use a unit test to check that it behaves the way we expect" }
         }
     ))

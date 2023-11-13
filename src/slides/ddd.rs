@@ -99,7 +99,11 @@ pub fn OurPortAndAdaptor(cx: Scope) -> Element {
             }
         "}}
         Notes {
-            p {""}
+            p { indoc! {"
+                Here we've made User Store just an interface, and moved the implementation to a
+                class that implements that interface.
+            "}}
+            p {"Great, hexagonal architecture... how the hell does that help"}
         }
     ))
 }

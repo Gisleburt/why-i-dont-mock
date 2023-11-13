@@ -9,6 +9,10 @@ mod slides;
 use crate::slides::ddd::{
     DddIsAwesome, HexagonalArchitecture, OurPortAndAdaptor, PortsAndAdaptors,
 };
+use crate::slides::stub_adaptors::{
+    IntegrationTestsForStubAdaptors, MocksReview, StubAdaptorExample, StubAdaptorInTest,
+    StubAdaptors, TestAllTheThings,
+};
 use crate::{
     code::HighlightInit,
     impress::{ImpressGroup, ImpressInit, Step},
@@ -82,21 +86,17 @@ fn App(cx: Scope) -> Element {
 
             Step { OurPortAndAdaptor{}, name: "ddd-example", y: row(), x: (x_step * 5) - col(), rotate_z: 180 }
 
-            Step { name: "ddd-integration-tests", y: new_row(), x: col(),
-                h3 { "DDD Integration tests" }
-            }
+            Step { StubAdaptors{}, name: "stub-adaptors", y: new_row(), x: col() }
 
-            Step { name: "ddd-in-tests", y: row(), x: col(),
-                h3 { "Test adaptor usage" }
-            }
+            Step { StubAdaptorExample{}, name: "stub-adaptor-example", y: row(), x: col() }
 
-            Step { name: "ddd-unleashed", y: row(), x: col(),
-                h2 { "Why stop there" }
-            }
+            Step { StubAdaptorInTest{}, name: "stub-adaptors-in-tests", y: row(), x: col() }
 
-            Step { name: "ddd-adaptors-in-the-wild", y: row(), x: col(),
-                h3 { "Expanded use cases" }
-            }
+            Step { MocksReview{}, name: "stub-adaptors-vs-mocks", y: row(), x: col() }
+
+            Step { TestAllTheThings{}, name: "test-all-the-things", y: row(), x: col() }
+
+            Step { IntegrationTestsForStubAdaptors{}, name: "int-tests-for-stubs", y: row(), x: col() }
         }
         ImpressInit {}
         HighlightInit {}
