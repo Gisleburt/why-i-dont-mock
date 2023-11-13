@@ -61,7 +61,7 @@ pub fn StubAdaptorInTest(cx: Scope) -> Element {
                 const user = createUser({ casualName: Daniel, email: randomEmail() });
                 expect(await firstTimeUser(user)).toBe('Welcome Daniel');
 
-                const storedUser = await readByEmail(user.email);
+                const storedUser = await userStore.readByEmail(user.email);
                 expect(storedUser).toEqual(user);
             });
         "}}
@@ -89,7 +89,7 @@ pub fn TestAllTheThings(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 {"Test all the things"}
         Notes {
-            p {"Hopefully its not a surprise that I think we can solve this with more tests"}
+            p {"It's probably not a surprise that I think we can solve this with more tests"}
             p {"But this step is way less work than you might think"}
             p {"Lets go back to our integration tests"}
         }
@@ -125,11 +125,15 @@ pub fn IntegrationTestsForStubAdaptors(cx: Scope) -> Element {
             "}}
             p { indoc! {"
                 These are the exact same tests so any difference in behaviour between our adaptors
-                will be immediately detected,
+                will be immediately detected
             "}}
             p { indoc! {"
                 If you happen to work with a system that already has multiple adaptors connected to
                 the same ports, you can even extend your integration tests to include those too!
+            "}}
+            p { indoc! {"
+                So now everything is tested, the computer tells Daniel he is good, and Daniel is
+                happy
             "}}
         }
     ))

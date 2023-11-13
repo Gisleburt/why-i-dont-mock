@@ -45,7 +45,15 @@ pub fn Communicating(cx: Scope) -> Element {
             " }}
             p{ indoc! {"
                 We instantiate our class with some kind of database object that lets us talk to the
-                database. When we create a new user, we map our user type to the  
+                database. 
+            " }}
+            p{ indoc! {"
+                When we create a new user, we map our user type to something the database
+                understands, then store it.
+            " }}
+            p{ indoc! {"
+                When we recall the user from the database we map it back to our User type and return
+                it.
             " }}
         }
     ))

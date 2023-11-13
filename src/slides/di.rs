@@ -42,7 +42,7 @@ pub fn MockingIsNotAwesome(cx: Scope) -> Element {
 pub fn MockingExample(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 {"Unit Test with Mock Example"}
-        Typescript { indoc! {"
+        Typescript { indoc! { "
             it('should save the user and greet them', () => {
                 const user = createUser({ casualName: Daniel });
 
@@ -54,30 +54,28 @@ pub fn MockingExample(cx: Scope) -> Element {
                 expect(userStore.create.mock.calls[0][0].toBe(user);
                 expect(userStore.create.mock.instances.length).toBe(1);
             });
-        "}}
+        " } }
         Notes {
             p {"Here we've got what I'd call a typical mock."}
-            p { indoc! {"
+            p { indoc! { "
                 We've only mocked what we need, we return a value that makes the test pass, and
                 we've cast the mock so that we can inject it into function, we've tested the
                 function returns the right value... and for 'reasons' we've tested that user was
                 passed to the mock and that the mock was only called once.
-            "}}
+            " } }
             p {"You can probably tell that... I do not think this is awesome"}
-            p { indoc! {"
-                First, we've written a behavioural abstraction into the test. If the underlying
-                behaviour test changes, our test might still pass, even though we need to update
-                our code.
-            "}}
-            p {{ indoc! {"
-                A quick language specific aside here, any time in TypeScript you see `as`,
-                something has gone horribly wrong. If you want to hear more about that come fined
-                me later.
-            "}}}
-            p { indoc! {"
-                Second, we are, for some reason, testing the mock, is this helpful, is it
-                meaningful?
-            "}}
+            p { indoc! { "
+                First, we've written a behavioural abstraction into the test. We're going to need
+                to repeat this every single time we test code that uses this store.
+            " } }
+            p { indoc! { "
+                Second, there's no guarantee this behavioural abstraction will actually behave
+                correctly. It might even change in the future and then we have to hope our tests
+                correctly start failing and then go change everywhere our mocks are now wrong. This
+                might seem unlikely but I've seen test doubles return things in the wrong order
+                before, and that's enough to cause a problem. 
+            " } }
+            p {"Lets take a break"}
         }
     ))
 }
