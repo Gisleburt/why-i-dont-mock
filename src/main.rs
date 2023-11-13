@@ -6,16 +6,21 @@ mod mermaid;
 mod pos;
 mod slides;
 
-use crate::slides::external_systems::{
-    Communicating, ExternalSystems, IntTestAreAwesome, IntegrationTestExample,
-};
 use crate::{
     code::HighlightInit,
     impress::{ImpressGroup, ImpressInit, Step},
     mermaid::MermaidInit,
     pos::AutoReposition,
-    slides::intro::Intro,
-    slides::unit_tests::{AreAwesome, AreLoved, UnitTestExample},
+    slides::{
+        di::{
+            DependencyInjection, DependencyInjectionExample, MockingExample, MockingIsNotAwesome,
+        },
+        external_systems::{
+            Communicating, ExternalSystems, IntegrationTestExample, IntegrationTestsAreAwesome,
+        },
+        intro::Intro,
+        unit_tests::{AreAwesome, AreLoved, UnitTestExample},
+    },
 };
 use dioxus::prelude::*;
 
@@ -50,36 +55,21 @@ fn App(cx: Scope) -> Element {
 
             Step { UnitTestExample{} name: "unit-test-example", y: row(), x: col() }
 
-            Step { ExternalSystems {}, name: "external-systems", y: new_row(), x: col() }
+            Step { ExternalSystems{}, name: "external-systems", y: new_row(), x: col() }
 
-            Step { Communicating {}, name: "external-systems-interface", y: row(), x: col() }
+            Step { Communicating{}, name: "external-systems-interface", y: row(), x: col() }
 
-            Step { IntTestAreAwesome {}, name: "integration-tests-are-awesome", y: row(), x: col() }
+            Step { IntegrationTestsAreAwesome{}, name: "int-tests-are-awesome", y: row(), x: col() }
 
-            Step { IntegrationTestExample {}, name: "integration-test-example", y: row(), x: col() }
+            Step { IntegrationTestExample{}, name: "integration-test-example", y: row(), x: col() }
 
-            Step { name: "dependency-injection", y: new_row(), x: col(),
-                h2 {"Dependency Injection is Awesome"}
-            }
+            Step { DependencyInjection{}, name: "di", y: new_row(), x: col() }
 
-            Step { name: "dependency-injection-example", y: row(), x: col(),
-                h3 { "Example Code:" }
-                h3 { "Example Test" }
-                p { "Wait... does this now need to be an integration test" }
-            }
+            Step { DependencyInjectionExample{} , name: "di-example", y: row(), x: col() }
 
-            Step { name: "mocking", y: new_row(), x: col(),
-                h2 {"Mocking is... well... it exists"}
-            }
+            Step { MockingIsNotAwesome{}, name: "mocking", y: row(), x: col() }
 
-            Step { name: "mocking-example", y: row(), x: col(),
-                h3 { "Example Code:" }
-                h3 { "Example Mock" }
-            }
-
-            Step { name: "mocking-problem", y: row(), x: col(),
-                h3 { "The problem with mocks" }
-            }
+            Step { MockingExample{}, name: "mocking-example", y: row(), x: col() }
 
             Step { name: "ddd-is-awesome", y: new_row(), x: col(),
                 h2 { "Domain Driven Development to the rescue!" }

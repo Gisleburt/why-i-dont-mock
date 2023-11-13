@@ -51,7 +51,7 @@ pub fn Communicating(cx: Scope) -> Element {
     ))
 }
 
-pub fn IntTestAreAwesome(cx: Scope) -> Element {
+pub fn IntegrationTestsAreAwesome(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Integration Tests are Awesome" }
         Notes {
