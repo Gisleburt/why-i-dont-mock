@@ -74,15 +74,15 @@ fn App(cx: Scope) -> Element {
 
             Step { MockingExample{}, name: "mocking-example", y: row(), x: col() }
 
-            Step { DddIsAwesome{}, name: "ddd-is-awesome", y: new_row(), x: col() }
+            Step { DddIsAwesome{}, name: "ddd-is-awesome", y: new_row(), x: (x_step * 5) - col(), rotate_z: 180 }
 
-            Step { HexagonalArchitecture{}, name: "ddd-hex-arch", y: row(), x: col() }
+            Step { HexagonalArchitecture{}, name: "hex-arch", y: row(), x: (x_step * 5) - col(), rotate_z: 180 }
 
-            Step { PortsAndAdaptors{}, name: "ddd-ports-adaptors", y: row(), x: col() }
+            Step { PortsAndAdaptors{}, name: "ports-adaptors", y: row(), x: (x_step * 5) - col(), rotate_z: 180 }
 
-            Step { OurPortAndAdaptor{}, name: "ddd-ports-adaptors-example", y: row(), x: col() }
+            Step { OurPortAndAdaptor{}, name: "ddd-example", y: row(), x: (x_step * 5) - col(), rotate_z: 180 }
 
-            Step { name: "ddd-integration-tests", y: row(), x: col(),
+            Step { name: "ddd-integration-tests", y: new_row(), x: col(),
                 h3 { "DDD Integration tests" }
             }
 
