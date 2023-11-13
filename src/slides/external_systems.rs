@@ -15,7 +15,7 @@ pub fn ExternalSystems(cx: Scope) -> Element {
                 systems. Commonly, for example, we want to store information away from the
                 application, particularly if we're going to run many applications that need
                 access to the same data.
-            " }}
+            " } }
         }
     ))
 }
@@ -23,7 +23,7 @@ pub fn ExternalSystems(cx: Scope) -> Element {
 pub fn Communicating(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Example Database CRUD" }
-        Typescript { indoc! {"
+        Typescript { indoc! { "
             class UserStore {
                 constructor(private db: Database) {}
 
@@ -37,24 +37,24 @@ pub fn Communicating(cx: Scope) -> Element {
                     return userFromDb(dbUser);
                 }
             }
-        "}}
+        " } }
         Notes {
-            p{ indoc! {"
+            p{ indoc! { "
                 That user object from before, lets say we want to be able to create and read back
                 that user. We might write a class something like this.
-            " }}
-            p{ indoc! {"
+            " } }
+            p{ indoc! { "
                 We instantiate our class with some kind of database object that lets us talk to the
                 database. 
-            " }}
-            p{ indoc! {"
+            " } }
+            p{ indoc! { "
                 When we create a new user, we map our user type to something the database
                 understands, then store it.
-            " }}
-            p{ indoc! {"
+            " } }
+            p{ indoc! { "
                 When we recall the user from the database we map it back to our User type and return
                 it.
-            " }}
+            " } }
         }
     ))
 }
@@ -63,12 +63,12 @@ pub fn IntegrationTestsAreAwesome(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Integration Tests are Awesome" }
         Notes {
-            p {"Integration tests are awesome"}
-            p {"I'm predictable"}
-            p { indoc! {"
+            p { "Integration tests are awesome" }
+            p { "I'm predictable" }
+            p { indoc! { "
                 As this is the part of how we communicate with the database (and assuming those 
                 other functions were unit tested), this makes sense to test against a real database
-            "}}
+            " } }
         }
     ))
 }
@@ -76,7 +76,7 @@ pub fn IntegrationTestsAreAwesome(cx: Scope) -> Element {
 pub fn IntegrationTestExample(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Integration Tests are Awesome" }
-        Typescript { indoc! {"
+        Typescript { indoc! { "
             const email = randomEmail();
             const userStore = new UserStore(dbConnection);
 
@@ -89,13 +89,13 @@ pub fn IntegrationTestExample(cx: Scope) -> Element {
                 const user = await userStore.readByEmail(email);
                 expect(user.email).toBe(email);
             });
-        "}}
+        " } }
         Notes {
-            p { indoc! {"Ok, I know, these are a little contrived"}}
-            p { indoc! {"
+            p { "Ok, I know, these are a little contrived" }
+            p { indoc! { "
                 But here we've got a test that will store data in an actual database and then
                 recall it again. Great.
-            "}}
+            " } }
         }
     ))
 }
