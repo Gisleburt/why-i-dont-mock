@@ -6,6 +6,9 @@ mod mermaid;
 mod pos;
 mod slides;
 
+use crate::slides::ddd::{
+    DddIsAwesome, HexagonalArchitecture, OurPortAndAdaptor, PortsAndAdaptors,
+};
 use crate::{
     code::HighlightInit,
     impress::{ImpressGroup, ImpressInit, Step},
@@ -71,18 +74,13 @@ fn App(cx: Scope) -> Element {
 
             Step { MockingExample{}, name: "mocking-example", y: row(), x: col() }
 
-            Step { name: "ddd-is-awesome", y: new_row(), x: col(),
-                h2 { "Domain Driven Development to the rescue!" }
-            }
+            Step { DddIsAwesome{}, name: "ddd-is-awesome", y: new_row(), x: col() }
 
-            Step { name: "ddd-explainer", y: row(), x: col(),
-                h3 { "What is DDD" }
-                p { "Ports and Adaptors" }
-            }
+            Step { HexagonalArchitecture{}, name: "ddd-hex-arch", y: row(), x: col() }
 
-            Step { name: "ddd-test-adaptor", y: row(), x: col(),
-                h3 { "Test Adaptors" }
-            }
+            Step { PortsAndAdaptors{}, name: "ddd-ports-adaptors", y: row(), x: col() }
+
+            Step { OurPortAndAdaptor{}, name: "ddd-ports-adaptors-example", y: row(), x: col() }
 
             Step { name: "ddd-integration-tests", y: row(), x: col(),
                 h3 { "DDD Integration tests" }
