@@ -7,9 +7,6 @@ pub struct NotesProps<'a> {
 
 pub fn Notes<'a>(cx: Scope<'a, NotesProps<'a>>) -> Element {
     cx.render(rsx!(
-        div {
-            class: "notes",
-            &cx.props.children
-        }
+        div { class: "notes", &cx.props.children }
     ))
 }

@@ -55,55 +55,73 @@ fn App(cx: Scope) -> Element {
 
     cx.render(rsx! {
         ImpressGroup { width: width + width_buffer, height: height + height_buffer,
-            Step { Intro{}, name: "intro", y: new_row(), x: col() }
+            Step { name: "intro", y: new_row(), x: col(), Intro {} }
 
-            Step { AreAwesome{}, name: "unit-tests-are-awesome", y: new_row(), x: col() }
+            Step { name: "unit-tests-are-awesome", y: new_row(), x: col(), AreAwesome {} }
 
-            Step { AreLoved{}, name: "unit-tests-are-love", y: row(), x: col(),}
+            Step { name: "unit-tests-are-love", y: row(), x: col(), AreLoved {} }
 
-            Step { UnitTestExample{} name: "unit-test-example", y: row(), x: col() }
+            Step { name: "unit-test-example", y: row(), x: col(), UnitTestExample {} }
 
-            Step { ExternalSystems{}, name: "external-systems", y: new_row(), x: col() }
+            Step { name: "external-systems", y: new_row(), x: col(), ExternalSystems {} }
 
-            Step { Communicating{}, name: "external-systems-interface", y: row(), x: col() }
+            Step { name: "external-systems-interface", y: row(), x: col(), Communicating {} }
 
-            Step { IntegrationTestsAreAwesome{}, name: "int-tests-are-awesome", y: row(), x: col() }
+            Step { name: "int-tests-are-awesome", y: row(), x: col(), IntegrationTestsAreAwesome {} }
 
-            Step { IntegrationTestExample{}, name: "integration-test-example", y: row(), x: col() }
+            Step { name: "integration-test-example", y: row(), x: col(), IntegrationTestExample {} }
 
-            Step { DependencyInjection{}, name: "di", y: new_row(), x: col() }
+            Step { name: "di", y: new_row(), x: col(), DependencyInjection {} }
 
-            Step { DependencyInjectionExample{} , name: "di-example", y: row(), x: col() }
+            Step { name: "di-example", y: row(), x: col(), DependencyInjectionExample {} }
 
-            Step { MockingIsNotAwesome{}, name: "mocking", y: row(), x: col() }
+            Step { name: "mocking", y: row(), x: col(), MockingIsNotAwesome {} }
 
-            Step { MockingExample{}, name: "mocking-example", y: row(), x: col() }
+            Step { name: "mocking-example", y: row(), x: col(), MockingExample {} }
 
-            Step { DddIsAwesome{}, name: "ddd-is-awesome", y: new_row(), x: (x_step * 5) - col(), rotate_z: 180 }
+            Step {
+                name: "ddd-is-awesome",
+                y: new_row(),
+                x: (x_step * 5) - col(),
+                rotate_z: 180,
+                DddIsAwesome {}
+            }
 
-            Step { HexagonalArchitecture{}, name: "hex-arch", y: row(), x: (x_step * 5) - col(), rotate_z: 180 }
+            Step { name: "hex-arch", y: row(), x: (x_step * 5) - col(), rotate_z: 180, HexagonalArchitecture {} }
 
-            Step { PortsAndAdaptors{}, name: "ports-adaptors", y: row(), x: (x_step * 5) - col(), rotate_z: 180 }
+            Step {
+                name: "ports-adaptors",
+                y: row(),
+                x: (x_step * 5) - col(),
+                rotate_z: 180,
+                PortsAndAdaptors {}
+            }
 
-            Step { OurPortAndAdaptor{}, name: "ddd-example", y: row(), x: (x_step * 5) - col(), rotate_z: 180 }
+            Step {
+                name: "ddd-example",
+                y: row(),
+                x: (x_step * 5) - col(),
+                rotate_z: 180,
+                OurPortAndAdaptor {}
+            }
 
-            Step { StubAdaptors{}, name: "stub-adaptors", y: new_row(), x: col() }
+            Step { name: "stub-adaptors", y: new_row(), x: col(), StubAdaptors {} }
 
-            Step { StubAdaptorExample{}, name: "stub-adaptor-example", y: row(), x: col() }
+            Step { name: "stub-adaptor-example", y: row(), x: col(), StubAdaptorExample {} }
 
-            Step { StubAdaptorInTest{}, name: "stub-adaptors-in-tests", y: row(), x: col() }
+            Step { name: "stub-adaptors-in-tests", y: row(), x: col(), StubAdaptorInTest {} }
 
-            Step { MocksReview{}, name: "stub-adaptors-vs-mocks", y: row(), x: col() }
+            Step { name: "stub-adaptors-vs-mocks", y: row(), x: col(), MocksReview {} }
 
-            Step { TestAllTheThings{}, name: "test-all-the-things", y: row(), x: col() }
+            Step { name: "test-all-the-things", y: row(), x: col(), TestAllTheThings {} }
 
-            Step { IntegrationTestsForStubAdaptors{}, name: "int-tests-for-stubs", y: row(), x: col() }
+            Step { name: "int-tests-for-stubs", y: row(), x: col(), IntegrationTestsForStubAdaptors {} }
 
-            Step { Conclusion{}, name: "conclusion", y: new_row(), x: col() }
+            Step { name: "conclusion", y: new_row(), x: col(), Conclusion {} }
 
-            Step { Bonus{}, name: "bonus-use", y: row(), x: col() }
+            Step { name: "bonus-use", y: row(), x: col(), Bonus {} }
 
-            Step { ThankYou{}, name: "thank-you", y: row(), x: col() }
+            Step { name: "thank-you", y: row(), x: col(), ThankYou {} }
         }
         ImpressInit {}
         HighlightInit {}
