@@ -1,5 +1,27 @@
+html {
+    background-color: #444;
+    font-size: 62.5%;
+}
+
 .notes {
     display: none;
+}
+
+h1, h2, h3, h4 {
+    font-family: sans-serif;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 5.5rem;
+}
+
+h2 {
+    font-size: 4rem;
+}
+
+.hide {
+    color: rgba(0, 0, 0, 0);
 }
 
 .step {
