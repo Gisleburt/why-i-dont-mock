@@ -5,6 +5,18 @@ use indoc::indoc;
 
 pub fn AreAwesome(cx: Scope) -> Element {
     cx.render(rsx!(
+        h2 {
+            "Unit Tests "
+            span { class: "hide", "are Awesome" }
+        }
+        Notes { 
+            p { "Unit Tests are awesome" }
+            p { "Those that know me, know that..." }
+        }
+    ))
+}
+pub fn AreAwesome2(cx: Scope) -> Element {
+    cx.render(rsx!(
         h2 { "Unit Tests are Awesome" }
         Notes { 
             p { "Unit Tests are awesome" }

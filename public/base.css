@@ -24,8 +24,12 @@ h2 {
     color: rgba(0, 0, 0, 0);
 }
 
+.future.stack {
+    display: none;
+}
+
 .step {
-    background-color: lightgrey;
+    background-color: white;
 
     width: 1280px;
     height: 720px;
@@ -35,8 +39,4 @@ h2 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-.step.active {
-    background-color: white;
 }

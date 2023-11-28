@@ -11,12 +11,16 @@ impl AutoReposition {
         self.row
     }
 
-    pub fn col(&mut self) -> i32 {
+    pub fn col(&self) -> i32 {
+        self.col
+    }
+
+    pub fn next_col(&mut self) -> i32 {
         self.col += 1;
         self.col
     }
 
-    pub fn new_row(&mut self) -> i32 {
+    pub fn next_row(&mut self) -> i32 {
         self.row += 1;
         self.col = 0;
         self.row

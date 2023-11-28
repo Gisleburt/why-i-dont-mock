@@ -14,6 +14,7 @@ use crate::slides::stub_adaptors::{
     IntegrationTestsForStubAdaptors, MocksReview, StubAdaptorExample, StubAdaptorInTest,
     StubAdaptors, TestAllTheThings,
 };
+use crate::slides::unit_tests::AreAwesome2;
 use crate::{
     code::HighlightInit,
     impress::{ImpressGroup, ImpressInit, Step},
@@ -49,50 +50,66 @@ fn App(cx: Scope) -> Element {
 
     let auto_pos = RefCell::new(AutoReposition::new());
 
-    let row = || auto_pos.borrow_mut().row() * y_step;
-    let new_row = || auto_pos.borrow_mut().new_row() * y_step;
-    let col = || auto_pos.borrow_mut().col() * x_step;
+    let row = || auto_pos.borrow().row() * y_step;
+    let next_row = || auto_pos.borrow_mut().next_row() * y_step;
+    let col = || auto_pos.borrow().col() * x_step;
+    let next_col = || auto_pos.borrow_mut().next_col() * x_step;
 
     cx.render(rsx! {
         ImpressGroup { width: width + width_buffer, height: height + height_buffer,
-            Step { name: "intro", y: new_row(), x: col(), Intro {} }
+            Step { name: "intro", y: next_row(), x: next_col(), Intro {} }
 
-            Step { name: "unit-tests-are-awesome", y: new_row(), x: col(), AreAwesome {} }
+            Step { name: "unit-tests-are-awesome", y: next_row(), x: next_col(), AreAwesome {} }
 
-            Step { name: "unit-tests-are-love", y: row(), x: col(), AreLoved {} }
+            Step {
+                name: "unit-tests-are-awesome-reveal",
+                class: "stack",
+                y: row(),
+                x: col(),
+                transition_duration: 0,
+                AreAwesome2 {}
+            }
 
-            Step { name: "unit-test-example", y: row(), x: col(), UnitTestExample {} }
+            Step { name: "unit-tests-are-love", y: row(), x: next_col(), AreLoved {} }
 
-            Step { name: "external-systems", y: new_row(), x: col(), ExternalSystems {} }
+            Step { name: "unit-test-example", y: row(), x: next_col(), UnitTestExample {} }
 
-            Step { name: "external-systems-interface", y: row(), x: col(), Communicating {} }
+            Step { name: "external-systems", y: next_row(), x: next_col(), ExternalSystems {} }
 
-            Step { name: "int-tests-are-awesome", y: row(), x: col(), IntegrationTestsAreAwesome {} }
+            Step { name: "external-systems-interface", y: row(), x: next_col(), Communicating {} }
 
-            Step { name: "integration-test-example", y: row(), x: col(), IntegrationTestExample {} }
+            Step { name: "int-tests-are-awesome", y: row(), x: next_col(), IntegrationTestsAreAwesome {} }
 
-            Step { name: "di", y: new_row(), x: col(), DependencyInjection {} }
+            Step { name: "integration-test-example", y: row(), x: next_col(), IntegrationTestExample {} }
 
-            Step { name: "di-example", y: row(), x: col(), DependencyInjectionExample {} }
+            Step { name: "di", y: next_row(), x: next_col(), DependencyInjection {} }
 
-            Step { name: "mocking", y: row(), x: col(), MockingIsNotAwesome {} }
+            Step { name: "di-example", y: row(), x: next_col(), DependencyInjectionExample {} }
 
-            Step { name: "mocking-example", y: row(), x: col(), MockingExample {} }
+            Step { name: "mocking", y: row(), x: next_col(), MockingIsNotAwesome {} }
+
+            Step { name: "mocking-example", y: row(), x: next_col(), MockingExample {} }
 
             Step {
                 name: "ddd-is-awesome",
-                y: new_row(),
-                x: (x_step * 5) - col(),
+                y: next_row(),
+                x: (x_step * 5) - next_col(),
                 rotate_z: 180,
                 DddIsAwesome {}
             }
 
-            Step { name: "hex-arch", y: row(), x: (x_step * 5) - col(), rotate_z: 180, HexagonalArchitecture {} }
+            Step {
+                name: "hex-arch",
+                y: row(),
+                x: (x_step * 5) - next_col(),
+                rotate_z: 180,
+                HexagonalArchitecture {}
+            }
 
             Step {
                 name: "ports-adaptors",
                 y: row(),
-                x: (x_step * 5) - col(),
+                x: (x_step * 5) - next_col(),
                 rotate_z: 180,
                 PortsAndAdaptors {}
             }
@@ -100,28 +117,28 @@ fn App(cx: Scope) -> Element {
             Step {
                 name: "ddd-example",
                 y: row(),
-                x: (x_step * 5) - col(),
+                x: (x_step * 5) - next_col(),
                 rotate_z: 180,
                 OurPortAndAdaptor {}
             }
 
-            Step { name: "stub-adaptors", y: new_row(), x: col(), StubAdaptors {} }
+            Step { name: "stub-adaptors", y: next_row(), x: next_col(), StubAdaptors {} }
 
-            Step { name: "stub-adaptor-example", y: row(), x: col(), StubAdaptorExample {} }
+            Step { name: "stub-adaptor-example", y: row(), x: next_col(), StubAdaptorExample {} }
 
-            Step { name: "stub-adaptors-in-tests", y: row(), x: col(), StubAdaptorInTest {} }
+            Step { name: "stub-adaptors-in-tests", y: row(), x: next_col(), StubAdaptorInTest {} }
 
-            Step { name: "stub-adaptors-vs-mocks", y: row(), x: col(), MocksReview {} }
+            Step { name: "stub-adaptors-vs-mocks", y: row(), x: next_col(), MocksReview {} }
 
-            Step { name: "test-all-the-things", y: row(), x: col(), TestAllTheThings {} }
+            Step { name: "test-all-the-things", y: row(), x: next_col(), TestAllTheThings {} }
 
-            Step { name: "int-tests-for-stubs", y: row(), x: col(), IntegrationTestsForStubAdaptors {} }
+            Step { name: "int-tests-for-stubs", y: row(), x: next_col(), IntegrationTestsForStubAdaptors {} }
 
-            Step { name: "conclusion", y: new_row(), x: col(), Conclusion {} }
+            Step { name: "conclusion", y: next_row(), x: next_col(), Conclusion {} }
 
-            Step { name: "bonus-use", y: row(), x: col(), Bonus {} }
+            Step { name: "bonus-use", y: row(), x: next_col(), Bonus {} }
 
-            Step { name: "thank-you", y: row(), x: col(), ThankYou {} }
+            Step { name: "thank-you", y: row(), x: next_col(), ThankYou {} }
         }
         ImpressInit {}
         HighlightInit {}
