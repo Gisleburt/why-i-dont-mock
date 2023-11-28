@@ -20,12 +20,22 @@ h2 {
     font-size: 4rem;
 }
 
+h3 {
+    font-size: 3.5rem;
+}
+
+pre {
+    font-size: 2.5rem;
+    font-family: monospace;
+    line-height: 3.5rem;
+}
+
 .hide {
-    color: rgba(0, 0, 0, 0);
+    visibility: hidden;
 }
 
 .future.stack {
-    display: none;
+    visibility: hidden;
 }
 
 .step {

@@ -14,7 +14,7 @@ use crate::slides::stub_adaptors::{
     IntegrationTestsForStubAdaptors, MocksReview, StubAdaptorExample, StubAdaptorInTest,
     StubAdaptors, TestAllTheThings,
 };
-use crate::slides::unit_tests::AreAwesome2;
+use crate::slides::unit_tests::{AreAwesome, UnitTestCode};
 use crate::{
     code::HighlightInit,
     impress::{ImpressGroup, ImpressInit, Step},
@@ -28,7 +28,7 @@ use crate::{
             Communicating, ExternalSystems, IntegrationTestExample, IntegrationTestsAreAwesome,
         },
         intro::Intro,
-        unit_tests::{AreAwesome, AreLoved, UnitTestExample},
+        unit_tests::{AreLoved, UnitTestExample, UnitTests},
     },
 };
 use dioxus::prelude::*;
@@ -59,7 +59,7 @@ fn App(cx: Scope) -> Element {
         ImpressGroup { width: width + width_buffer, height: height + height_buffer,
             Step { name: "intro", y: next_row(), x: next_col(), Intro {} }
 
-            Step { name: "unit-tests-are-awesome", y: next_row(), x: next_col(), AreAwesome {} }
+            Step { name: "unit-tests-are-awesome", y: next_row(), x: next_col(), UnitTests {} }
 
             Step {
                 name: "unit-tests-are-awesome-reveal",
@@ -67,12 +67,21 @@ fn App(cx: Scope) -> Element {
                 y: row(),
                 x: col(),
                 transition_duration: 0,
-                AreAwesome2 {}
+                AreAwesome {}
             }
 
             Step { name: "unit-tests-are-love", y: row(), x: next_col(), AreLoved {} }
 
-            Step { name: "unit-test-example", y: row(), x: next_col(), UnitTestExample {} }
+            Step { name: "unit-test-code", y: row(), x: next_col(), UnitTestCode {} }
+
+            Step {
+                name: "unit-test-example",
+                class: "stack",
+                y: row(),
+                x: col(),
+                transition_duration: 0,
+                UnitTestExample {}
+            }
 
             Step { name: "external-systems", y: next_row(), x: next_col(), ExternalSystems {} }
 
