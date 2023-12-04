@@ -68,3 +68,12 @@ pre code {
     background: transparent;
     justify-content: flex-end;
 }
+
+.daniel {
+    font-family: "Source Code Pro", "Fira Code", "Courier New", monospace;
+    color: darkblue;
+}
+
+.daniel span {
+    color: darkgreen;
+}
