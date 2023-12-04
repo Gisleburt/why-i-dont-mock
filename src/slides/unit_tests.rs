@@ -15,7 +15,7 @@ pub fn UnitTests(cx: Scope) -> Element {
 pub fn AreAwesome(cx: Scope) -> Element {
     cx.render(rsx!(
         h2 { "Unit Tests are Awesome" }
-        Notes {
+        Notes { 
             p { "are Awesome" }
             p { "Those that know me, know that..." }
         }
@@ -25,8 +25,12 @@ pub fn AreAwesome(cx: Scope) -> Element {
 pub fn AreLoved(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "I love unit tests" }
-        p { "<insert meme image>" }
-        Notes {
+        img {
+            src: "/images/glomp-unit-tests.gif",
+            alt: "Daniel glomping Unit Tests",
+            style: "width: 400px"
+        }
+        Notes { 
             p { "I _love_ tests" }
             p {
                 indoc! { "
@@ -43,9 +47,9 @@ pub fn AreLoved(cx: Scope) -> Element {
 pub fn UnitTestCode(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Example Code:" }
-        Typescript {
+        Typescript { 
             indoc! { "
-                const firstTimeUser = (user: User): Promise<string> => {
+                const firstTimeUser = (user: User): string => {
                     return `Welcome ${user.casualName}`;
                 }
             "}
@@ -53,7 +57,7 @@ pub fn UnitTestCode(cx: Scope) -> Element {
 
         div { class: "hide",
             h3 { "Example Unit Test:" }
-            Typescript {
+            Typescript { 
                 indoc! { "
                     it('should greet the user', () => {
                         const user = createUser({ casualName: 'Daniel' });
@@ -63,7 +67,7 @@ pub fn UnitTestCode(cx: Scope) -> Element {
             }
         }
 
-        Notes {
+        Notes { 
             p {
                 indoc! {"
                     Here's an example of some code that takes a user, and writes a custom greeting
@@ -85,15 +89,15 @@ pub fn UnitTestCode(cx: Scope) -> Element {
 pub fn UnitTestExample(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Example Code:" }
-        Typescript {
+        Typescript { 
             indoc! { "
-                const firstTimeUser = (user: User): Promise<string> => {
+                const firstTimeUser = (user: User): string => {
                     return `Welcome ${user.casualName}`;
                 }
             "}
         }
         h3 { "Example Unit Test:" }
-        Typescript {
+        Typescript { 
             indoc! { "
                 it('should greet the user', () => {
                     const user = createUser({ casualName: 'Daniel' });
@@ -101,7 +105,7 @@ pub fn UnitTestExample(cx: Scope) -> Element {
                 });
             " }
         }
-        Notes {
+        Notes { 
             p {
                 indoc! {"
                     Here's an example of some code that takes a user, and writes a custom greeting
