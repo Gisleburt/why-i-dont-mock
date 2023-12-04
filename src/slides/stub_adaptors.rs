@@ -99,6 +99,11 @@ pub fn MocksReview(cx: Scope) -> Element {
 pub fn TestAllTheThings(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { " Test all the things" }
+        img {
+            src: "images/all-the-things.png",
+            alt: "All The Things (by Colleen Powers)",
+            style: "width: 400px"
+        }
         Notes {
             p { " It's probably not a surprise that I think we can solve this with more tests" }
             p { " But this step is way less work than you might think" }

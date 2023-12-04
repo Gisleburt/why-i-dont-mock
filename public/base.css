@@ -1,5 +1,5 @@
 html {
-    background-color: #444;
+    background-color: white;
     font-size: 62.5%;
 }
 
@@ -30,6 +30,10 @@ pre {
     line-height: 3.5rem;
 }
 
+pre code {
+    border-radius: 1rem;
+}
+
 .hide {
     visibility: hidden;
 }
@@ -43,7 +47,6 @@ pre {
 
     width: 1280px;
     height: 720px;
-    border: 1px solid #f0f;
 
     display: flex;
     flex-direction: column;

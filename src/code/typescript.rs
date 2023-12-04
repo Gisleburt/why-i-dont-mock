@@ -7,7 +7,7 @@ pub struct TypescriptProps<'a> {
 
 pub fn Typescript<'a>(cx: Scope<'a, TypescriptProps<'a>>) -> Element {
     cx.render(rsx!(
-        pre { class: "theme-ally-dark",
+        pre { class: "atom-one-light",
             code { class: "language-typescript", &cx.props.children }
         }
     ))
