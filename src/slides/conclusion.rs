@@ -52,8 +52,8 @@ pub fn ConclusionThree(cx: Scope) -> Element {
 
 pub fn Bonus(cx: Scope) -> Element {
     cx.render(rsx!(
-        h3 { "Bonus usage" }
-        Notes { 
+        h3 { "Bonus usages" }
+        Notes {
             p {
                 indoc! { "
                     A minor aside here, I wanted to add that Stub Adaptors actually _can_ be useful
@@ -64,8 +64,17 @@ pub fn Bonus(cx: Scope) -> Element {
             }
             p {
                 indoc! { "
-                    Since we already wrote the adaptors for tests, and we're testing them themselves,
+                    Since we already wrote the adaptors for tests, and we're already testing them,
                     we effectively get this behaviour for free.
+                " }
+            }
+            p {
+                indoc! { "
+                    Additionally, there's nothing stopping you using stub adaptors in local dev.
+                    For a simpler app, you might be happy to run a database locally, but for more
+                    complex microservice architectures, you may not want to run every service
+                    locally, and this would be easier, cleaner and less risky than connecting to
+                    services in other environments
                 " }
             }
         }
@@ -86,17 +95,10 @@ pub fn WhereToFind(cx: Scope) -> Element {
             "Find these slides at "
             a { href: "https://why-i-dont-mock.danielmason.com", "why-i-dont-mock.danielmason.com" }
         }
-        p {
-            "Find the slide code at "
-            a { href: "https://github.com/gisleburt/why-i-dont-mock",
-                "github.com/gisleburt/why-i-dont-mock"
-            }
-        }
-        Notes { 
+        Notes {
             p { "Thank you for your time, I've been Daniel" }
             p { "If you want to look through these slides later, you can find them on" }
             p { "why i dont mock dot daniel mason dot come" }
-            p { "If you want to see how I made the slides, you can find them on my github" }
         }
     ))
 }

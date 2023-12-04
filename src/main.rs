@@ -279,9 +279,9 @@ fn App(cx: Scope) -> Element {
             Step {
                 name: "where-to-find",
                 class: "final",
-                y: max_row() / 2 + (2 * y_step),
-                x: max_col() / 2 + (1 * x_step),
-                scale: 8,
+                y: max_row() / 2 + y_step,
+                x: max_col() / 2 + x_step,
+                scale: 9,
                 WhereToFind {}
             }
         }

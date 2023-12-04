@@ -10,16 +10,16 @@ pub fn StubAdaptors(cx: Scope) -> Element {
             alt: "Create an adaptor for a port that doesn't talk to anything",
             style: "width: 400px"
         }
-        Notes { 
+        Notes {
             p { "Stub Adaptors" }
             p { "What if we made an adaptor that doesn't talk to another service" }
             p {
                 indoc! {"
-                    What we had an adaptor that matched the port but encapsulated all of the
+                    We could have an adaptor that matched the port but encapsulated all of the
                     behaviour
                 " }
             }
-            p { "What might that look like?" }
+            p { "Lets try it with our User Store" }
         }
     ))
 }
@@ -27,7 +27,7 @@ pub fn StubAdaptors(cx: Scope) -> Element {
 pub fn StubAdaptorExample(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Example" }
-        Typescript { 
+        Typescript {
             indoc! { "
                 class StubUserStore implements UserStore {
                     constructor(private users: User[] = []) {}
@@ -42,15 +42,22 @@ pub fn StubAdaptorExample(cx: Scope) -> Element {
                 }
             " }
         }
-        Notes { 
-            p { "Here we simply store the user data in an array" }
+        Notes {
+            p {
+                indoc! { "
+                    In this implementation of our User Store, instead of passing in a database
+                    connection, we instead pass in an array, empty by default, but allowing some
+                    pre-configuration
+                " }
+            }
+            p { "Our create user method simply stores the user in the array" }
+            p { "And our read by email method finds them in the array" }
             p {
                 indoc! { "
                     For a production app, this would be terrible, but for testing, this is very
                     useful
                 " }
             }
-            p { "We've also allowed you to set the array to something you control, handy later" }
         }
     ))
 }
@@ -58,7 +65,7 @@ pub fn StubAdaptorExample(cx: Scope) -> Element {
 pub fn StubAdaptorInTest(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Usage in unit tests" }
-        Typescript { 
+        Typescript {
             indoc! {"
                 it('should greet the user', async () => {
                     const userStore = new StubUserStore();
@@ -71,12 +78,12 @@ pub fn StubAdaptorInTest(cx: Scope) -> Element {
                 });
             " }
         }
-        Notes { 
-            p { "Now our test just uses the stub adaptor" }
+        Notes {
+            p { "We can now use the stub adaptor instead of the mock in our unit test" }
             p { "We create a StubUserStore that will only last the length of the test" }
             p { "We test that our function returns the right thing" }
             p { "We then use the store itself to check the right thing was stored" }
-            p { "As we control the array in the store, we could check that instead if we wanted" }
+            p { "As we control the array in the store, if we wanted, we could check that instead" }
         }
     ))
 }
@@ -110,7 +117,7 @@ pub fn MocksReviewTwo(cx: Scope) -> Element {
             li { "✅ Behavioural abstraction removed from the test" }
             li { "❌ Behavioural abstraction matches the other store" }
         }
-        Notes { 
+        Notes {
             p { "But we haven't confirmed that our behavioural abstraction matches the real thing" }
         }
     ))
@@ -124,7 +131,7 @@ pub fn TestAllTheThings(cx: Scope) -> Element {
             alt: "All The Things (by Colleen Powers)",
             style: "width: 400px"
         }
-        Notes { 
+        Notes {
             p { " It's probably not a surprise that I think we can solve this with more tests" }
             p { " But this step is way less work than you might think" }
             p { " Lets go back to our integration tests" }
@@ -135,7 +142,7 @@ pub fn TestAllTheThings(cx: Scope) -> Element {
 pub fn IntegrationTestsForStubAdaptors(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Back to integration tests" }
-        Typescript { 
+        Typescript {
             indoc! { "
                 const pgStore = new PostgresUserStore(dbConnection);
                 const stubStore = new StubUserStore();
@@ -154,7 +161,7 @@ pub fn IntegrationTestsForStubAdaptors(cx: Scope) -> Element {
                 });
             " }
         }
-        Notes { 
+        Notes {
             p { "These are almost identical to our earlier integration steps" }
             p {
                 indoc! { "

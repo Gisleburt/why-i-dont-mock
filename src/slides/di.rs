@@ -9,21 +9,24 @@ pub fn DependencyInjection(cx: Scope) -> Element {
             "Dependency Injection "
             span { class: "hide", "is Awesome" }
         }
-        Notes { p { "Now lets combined our two contrived examples to a new contrived example" } }
+        Notes { p { "Dependency injection..." } }
     ))
 }
 
 pub fn DependencyInjectionIsAwesome(cx: Scope) -> Element {
     cx.render(rsx!(
         h2 { "Dependency Injection is Awesome" }
-        Notes { p { "Now lets combined our two contrived examples to a new contrived example" } }
+        Notes {
+            p { "...is awesome" }
+            p { "Now lets combined our two contrived examples to a new contrived example" }
+        }
     ))
 }
 
 pub fn DependencyInjectionExample(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Contrived Example" }
-        Typescript { 
+        Typescript {
             indoc! { "
                 const firstTimeUser = async (userStore: UserStore, user: User): Promise<string> => {
                     await userStore.create(user);
@@ -31,13 +34,19 @@ pub fn DependencyInjectionExample(cx: Scope) -> Element {
                 }
             " }
         }
-        Notes { 
-            p { "So now we're using our DB code in our original code... how do we test it" }
-            p { "We can't unit test unit test it with a database connection" }
+        Notes {
             p {
                 indoc! { "
-                    We _could_ move it to an integration test... but then its turtles all the way
-                    down
+                    Here we pass the user store into our first time user function so that we can
+                    store the user when we first see them
+                " }
+            }
+            p { "But now we're using our DB code in our original code... how do we test it" }
+            p { "We can't unit test it with a database connection" }
+            p {
+                indoc! { "
+                    We _could_ move it to an integration test... but then we'd end up integration
+                    testing everything and its turtles all the way down
                 " }
             }
             p { "What if we injected something that doesn't talk to the database" }
@@ -51,21 +60,21 @@ pub fn MockingIs(cx: Scope) -> Element {
             "Mocking is "
             span { class: "hide", "... erm" }
         }
-        Notes { p { "Mocking is... lets come back to my opinion on that" } }
+        Notes { p { "Mocking is... " } }
     ))
 }
 
 pub fn MockingIsNotAwesome(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Mocking is ... erm" }
-        Notes { p { "Mocking is... lets come back to that" } }
+        Notes { p { "Mocking is... lets come back to my opinion on that" } }
     ))
 }
 
 pub fn MockingExample(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Unit Test with Mock Example" }
-        Typescript { 
+        Typescript {
             indoc! { "
                 it('should save the user and greet them', () => {
                     const user = createUser({ casualName: Daniel });
@@ -80,7 +89,7 @@ pub fn MockingExample(cx: Scope) -> Element {
                 });
             " }
         }
-        Notes { 
+        Notes {
             p { "Mocks are a way we can 'simulate' real behaviour" }
             p { "Here we've got what I'd call a typical mock." }
             p {
@@ -107,7 +116,7 @@ pub fn MockingExample(cx: Scope) -> Element {
                     order before, and that's enough to cause a problem. 
                 " }
             }
-            p { "Lets take a break" }
+            p { "Lets take a break from testing and talk about something else" }
         }
     ))
 }

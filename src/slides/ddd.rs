@@ -7,7 +7,7 @@ use indoc::indoc;
 pub fn DddIsAwesome(cx: Scope) -> Element {
     cx.render(rsx!(
         h2 { "DDD is Awesome" }
-        Notes { 
+        Notes {
             p { "Domain Drive Development is awesome" }
             p {
                 indoc! { "
@@ -27,7 +27,7 @@ pub fn HexagonalArchitecture(cx: Scope) -> Element {
             alt: "How does a web server talk to a database?",
             style: "width: 400px"
         }
-        Notes { 
+        Notes {
             p { "Hexagonal architecture is... a terrible name for a brilliant idea" }
             p {
                 indoc! {"
@@ -62,7 +62,7 @@ pub fn PortsAndAdaptors(cx: Scope) -> Element {
             alt: "Using ports and adaptors to separate coupled code",
             style: "width: 400px"
         }
-        Notes { 
+        Notes {
             p { "The two key parts of hexagonal architecture are ports and adaptors" }
             p {
                 indoc! {"
@@ -73,8 +73,9 @@ pub fn PortsAndAdaptors(cx: Scope) -> Element {
             p { "In between we have two elements, a port and an adaptor" }
             p {
                 indoc! {"
-                    The port is a pure abstraction, without any logic, of how our application would
-                    like to communicate its needs. This can usually be represented by an Interface.
+                    The port is a pure abstraction, without any logic, that describes how our
+                    application would like to communicate its needs. This can usually be
+                    represented by what many languages would call an interface.
                 " }
             }
             p {
@@ -90,7 +91,7 @@ pub fn PortsAndAdaptors(cx: Scope) -> Element {
 pub fn PortExample(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Port Example" }
-        Typescript { 
+        Typescript {
             indoc! { "
                 interface UserStore {
                     async create(user: User) => Promise<void>;
@@ -100,13 +101,16 @@ pub fn PortExample(cx: Scope) -> Element {
             " }
         }
 
-        Notes { p { "Here we've made User Store just an interface" } }
+        Notes {
+            p { "Here we've made User Store just an interface" }
+            p { "It still has the same methods and signatures as before" }
+        }
     ))
 }
 pub fn AdaptorExample(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Adaptor Example" }
-        Typescript { 
+        Typescript {
             indoc! { "
                 class PostgresUserStore implements UserStore {
                     constructor(private db: Database) {}
@@ -123,8 +127,9 @@ pub fn AdaptorExample(cx: Scope) -> Element {
                 }
             " }
         }
-        Notes { 
-            p { "And moved the implementation to a class that implements that interface." }
+        Notes {
+            p { "We've moved the implementation to a class that implements that interface." }
+            p { "Apart from the name, and the 'implements interface' bit, its otherwise identical" }
             p { "Great, we've got hexagonal architecture... how the hell does that help" }
         }
     ))
