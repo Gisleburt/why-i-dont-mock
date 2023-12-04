@@ -98,7 +98,7 @@ pub fn WhereToFind(cx: Scope) -> Element {
         Notes {
             p { "Thank you for your time, I've been Daniel" }
             p { "If you want to look through these slides later, you can find them on" }
-            p { "why i dont mock dot daniel mason dot come" }
+            p { "why i dont mock dot daniel mason dot com" }
         }
     ))
 }
