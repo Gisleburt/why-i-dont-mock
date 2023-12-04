@@ -65,8 +65,13 @@ pre code {
 }
 
 .step.final {
+    display: none;
     background: transparent;
     justify-content: flex-end;
+}
+
+.step.final.next, .step.final.active {
+    display: flex;
 }
 
 .daniel {
