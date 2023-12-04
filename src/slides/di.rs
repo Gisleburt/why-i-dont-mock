@@ -5,6 +5,16 @@ use indoc::indoc;
 
 pub fn DependencyInjection(cx: Scope) -> Element {
     cx.render(rsx!(
+        h2 {
+            "Dependency Injection "
+            span { class: "hide", "is Awesome" }
+        }
+        Notes { p { "Now lets combined our two contrived examples to a new contrived example" } }
+    ))
+}
+
+pub fn DependencyInjectionIsAwesome(cx: Scope) -> Element {
+    cx.render(rsx!(
         h2 { "Dependency Injection is Awesome" }
         Notes { p { "Now lets combined our two contrived examples to a new contrived example" } }
     ))

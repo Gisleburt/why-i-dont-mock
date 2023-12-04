@@ -6,16 +6,47 @@ pub fn Conclusion(cx: Scope) -> Element {
     cx.render(rsx!(
         h2 { "Conclusion" }
         ul {
-            ol { "Mocks are brittle and messy" }
-            ol { "DDD paradigms can extend to testing" }
-            ol { "Daniel Loves Tests" }
+            li { span { class: "hide", "💔 Mocks are brittle and messy" } }
+            li { span { class: "hide", "🤝 DDD paradigms can extend to testing" } }
+            li { span { class: "hide", "❤️ Daniel Loves Tests" } }
         }
-        Notes { 
-            p { "What did we learn?" }
-            p { "Mocks are, I think, brittle and messy " }
-            p { "Domain Driven Development paradigms can extend to testing" }
-            p { "I love testing" }
+        Notes { p { "What did we learn?" } }
+    ))
+}
+
+pub fn ConclusionOne(cx: Scope) -> Element {
+    cx.render(rsx!(
+        h2 { "Conclusion" }
+        ul {
+            li { "💔 Mocks are brittle and messy" }
+            li { span { class: "hide", "🤝 DDD paradigms can extend to testing" } }
+            li { span { class: "hide", "❤️ Daniel Loves Tests" } }
         }
+        Notes { p { "Mocks are brittle and messy " } }
+    ))
+}
+
+pub fn ConclusionTwo(cx: Scope) -> Element {
+    cx.render(rsx!(
+        h2 { "Conclusion" }
+        ul {
+            li { "💔 Mocks are brittle and messy" }
+            li { "🤝 DDD paradigms can extend to testing" }
+            li { span { class: "hide", "❤️ Daniel Loves Tests" } }
+        }
+        Notes { p { "Domain Driven Development paradigms can extend to testing" } }
+    ))
+}
+
+pub fn ConclusionThree(cx: Scope) -> Element {
+    cx.render(rsx!(
+        h2 { "Conclusion" }
+        ul {
+            li { "💔 Mocks are brittle and messy" }
+            li { "🤝 DDD paradigms can extend to testing" }
+            li { "❤️ Daniel Loves Tests" }
+        }
+        Notes { p { "I love testing" } }
     ))
 }
 
@@ -33,8 +64,8 @@ pub fn Bonus(cx: Scope) -> Element {
             }
             p {
                 indoc! { "
-                    Since we already wrote the adaptors for tests, and were testing them themselves,
-                    we effectively got this behaviour for free.
+                    Since we already wrote the adaptors for tests, and we're testing them themselves,
+                    we effectively get this behaviour for free.
                 " }
             }
         }
@@ -44,6 +75,25 @@ pub fn Bonus(cx: Scope) -> Element {
 pub fn ThankYou(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Thank you" }
+        p { "Any Questions?" }
+        p { class: "hide",
+            "Find these slides at "
+            a { href: "https://why-i-dont-mock.danielmason.com", "why-i-dont-mock.danielmason.com" }
+        }
+        p { class: "hide",
+            "Find the slide code at "
+            a { href: "https://github.com/gisleburt/why-i-dont-mock",
+                "github.com/gisleburt/why-i-dont-mock"
+            }
+        }
+        Notes { p { "Any Questions?" } }
+    ))
+}
+
+pub fn WhereToFind(cx: Scope) -> Element {
+    cx.render(rsx!(
+        h3 { "Thank you" }
+        p { "Any Questions?" }
         p {
             "Find these slides at "
             a { href: "https://why-i-dont-mock.danielmason.com", "why-i-dont-mock.danielmason.com" }
@@ -54,7 +104,6 @@ pub fn ThankYou(cx: Scope) -> Element {
                 "github.com/gisleburt/why-i-dont-mock"
             }
         }
-        p { "Any Questions?" }
         Notes { 
             p { "Thank you for your time, I've been Daniel" }
             p { "If you want to look through these slides later, you can find them on" }

@@ -7,7 +7,7 @@ use indoc::indoc;
 pub fn DddIsAwesome(cx: Scope) -> Element {
     cx.render(rsx!(
         h2 { "DDD is Awesome" }
-        Notes {
+        Notes { 
             p { "Domain Drive Development is awesome" }
             p {
                 indoc! { "
@@ -27,7 +27,7 @@ pub fn HexagonalArchitecture(cx: Scope) -> Element {
             alt: "How does a web server talk to a database?",
             style: "width: 400px"
         }
-        Notes {
+        Notes { 
             p { "Hexagonal architecture is... a terrible name for a brilliant idea" }
             p {
                 indoc! {"
@@ -62,7 +62,7 @@ pub fn PortsAndAdaptors(cx: Scope) -> Element {
             alt: "Using ports and adaptors to separate coupled code",
             style: "width: 400px"
         }
-        Notes {
+        Notes { 
             p { "The two key parts of hexagonal architecture are ports and adaptors" }
             p {
                 indoc! {"
@@ -90,7 +90,7 @@ pub fn PortsAndAdaptors(cx: Scope) -> Element {
 pub fn PortExample(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Port Example" }
-        Typescript {
+        Typescript { 
             indoc! { "
                 interface UserStore {
                     async create(user: User) => Promise<void>;
@@ -106,7 +106,7 @@ pub fn PortExample(cx: Scope) -> Element {
 pub fn AdaptorExample(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Adaptor Example" }
-        Typescript {
+        Typescript { 
             indoc! { "
                 class PostgresUserStore implements UserStore {
                     constructor(private db: Database) {}
@@ -123,7 +123,7 @@ pub fn AdaptorExample(cx: Scope) -> Element {
                 }
             " }
         }
-        Notes {
+        Notes { 
             p { "And moved the implementation to a class that implements that interface." }
             p { "Great, we've got hexagonal architecture... how the hell does that help" }
         }

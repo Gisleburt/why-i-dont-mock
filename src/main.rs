@@ -5,15 +5,17 @@ mod impress;
 mod pos;
 mod slides;
 
-use crate::slides::conclusion::{Bonus, Conclusion, ThankYou};
+use crate::slides::conclusion::{
+    Bonus, Conclusion, ConclusionOne, ConclusionThree, ConclusionTwo, ThankYou, WhereToFind,
+};
 use crate::slides::ddd::{
     AdaptorExample, DddIsAwesome, HexagonalArchitecture, PortExample, PortsAndAdaptors,
 };
-use crate::slides::di::MockingIs;
+use crate::slides::di::{DependencyInjectionIsAwesome, MockingIs};
 use crate::slides::external_systems::IntegrationTests;
 use crate::slides::stub_adaptors::{
-    IntegrationTestsForStubAdaptors, MocksReview, StubAdaptorExample, StubAdaptorInTest,
-    StubAdaptors, TestAllTheThings,
+    IntegrationTestsForStubAdaptors, MocksReview, MocksReviewOne, MocksReviewTwo,
+    StubAdaptorExample, StubAdaptorInTest, StubAdaptors, TestAllTheThings,
 };
 use crate::slides::unit_tests::{UnitTestCode, UnitTestsAreAwesome};
 use crate::{
@@ -102,6 +104,15 @@ fn App(cx: Scope) -> Element {
 
             Step { name: "di", y: next_row(), x: next_col(), DependencyInjection {} }
 
+            Step {
+                name: "di-is-awesome",
+                class: "stack",
+                y: row(),
+                x: col(),
+                transition_duration: 0,
+                DependencyInjectionIsAwesome {}
+            }
+
             Step { name: "di-example", y: row(), x: next_col(), DependencyInjectionExample {} }
 
             Step { name: "mocking-is", y: row(), x: next_col(), MockingIs {} }
@@ -165,15 +176,69 @@ fn App(cx: Scope) -> Element {
 
             Step { name: "stub-adaptors-vs-mocks", y: row(), x: next_col(), MocksReview {} }
 
+            Step {
+                name: "stub-adaptors-vs-mocks-1",
+                class: "stack",
+                y: row(),
+                x: col(),
+                transition_duration: 0,
+                MocksReviewOne {}
+            }
+
+            Step {
+                name: "stub-adaptors-vs-mocks-2",
+                class: "stack",
+                y: row(),
+                x: col(),
+                transition_duration: 0,
+                MocksReviewTwo {}
+            }
+
             Step { name: "test-all-the-things", y: row(), x: next_col(), TestAllTheThings {} }
 
             Step { name: "int-tests-for-stubs", y: row(), x: next_col(), IntegrationTestsForStubAdaptors {} }
 
             Step { name: "conclusion", y: next_row(), x: next_col(), Conclusion {} }
 
+            Step {
+                name: "conclusion-1",
+                class: "stack",
+                y: row(),
+                x: col(),
+                transition_duration: 0,
+                ConclusionOne {}
+            }
+
+            Step {
+                name: "conclusion-2",
+                class: "stack",
+                y: row(),
+                x: col(),
+                transition_duration: 0,
+                ConclusionTwo {}
+            }
+
+            Step {
+                name: "conclusion-3",
+                class: "stack",
+                y: row(),
+                x: col(),
+                transition_duration: 0,
+                ConclusionThree {}
+            }
+
             Step { name: "bonus-use", y: row(), x: next_col(), Bonus {} }
 
             Step { name: "thank-you", y: row(), x: next_col(), ThankYou {} }
+
+            Step {
+                name: "where-to-find",
+                y: row(),
+                x: col(),
+                class: "stack",
+                transition_duration: 0,
+                WhereToFind {}
+            }
         }
         ImpressInit {}
         HighlightInit {}
