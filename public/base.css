@@ -62,3 +62,8 @@ pre code {
     align-items: center;
     justify-content: center;
 }
+
+.step.final {
+    background: transparent;
+    justify-content: flex-end;
+}

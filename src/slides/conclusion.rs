@@ -76,24 +76,12 @@ pub fn ThankYou(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Thank you" }
         p { "Any Questions?" }
-        p { class: "hide",
-            "Find these slides at "
-            a { href: "https://why-i-dont-mock.danielmason.com", "why-i-dont-mock.danielmason.com" }
-        }
-        p { class: "hide",
-            "Find the slide code at "
-            a { href: "https://github.com/gisleburt/why-i-dont-mock",
-                "github.com/gisleburt/why-i-dont-mock"
-            }
-        }
         Notes { p { "Any Questions?" } }
     ))
 }
 
 pub fn WhereToFind(cx: Scope) -> Element {
     cx.render(rsx!(
-        h3 { "Thank you" }
-        p { "Any Questions?" }
         p {
             "Find these slides at "
             a { href: "https://why-i-dont-mock.danielmason.com", "why-i-dont-mock.danielmason.com" }

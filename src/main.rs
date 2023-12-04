@@ -56,12 +56,14 @@ fn App(cx: Scope) -> Element {
     let next_row = || auto_pos.borrow_mut().next_row() * y_step;
     let col = || auto_pos.borrow().col() * x_step;
     let next_col = || auto_pos.borrow_mut().next_col() * x_step;
+    let max_row = || auto_pos.borrow().max_row() * y_step;
+    let max_col = || auto_pos.borrow().max_col() * x_step;
 
     cx.render(rsx! {
         ImpressGroup { width: width + width_buffer, height: height + height_buffer,
-            Step { name: "intro", y: next_row(), x: next_col(), Intro {} }
+            Step { name: "intro", y: next_row(), x: {next_col(); next_col();next_col();next_col()}, Intro {} }
 
-            Step { name: "unit-tests-are-awesome", y: next_row(), x: next_col(), UnitTests {} }
+            Step { name: "unit-tests-are-awesome", y: next_row(), x: {next_col(); next_col(); next_col()}, UnitTests {} }
 
             Step {
                 name: "unit-tests-are-awesome-reveal",
@@ -85,7 +87,7 @@ fn App(cx: Scope) -> Element {
                 UnitTestExample {}
             }
 
-            Step { name: "external-systems", y: next_row(), x: next_col(), ExternalSystems {} }
+            Step { name: "external-systems", y: next_row(), x: { next_col(); next_col() }, ExternalSystems {} }
 
             Step { name: "external-systems-interface", y: row(), x: next_col(), Communicating {} }
 
@@ -102,7 +104,7 @@ fn App(cx: Scope) -> Element {
 
             Step { name: "integration-test-example", y: row(), x: next_col(), IntegrationTestExample {} }
 
-            Step { name: "di", y: next_row(), x: next_col(), DependencyInjection {} }
+            Step { name: "di", y: next_row(), x: {next_col(); next_col(); next_col()}, DependencyInjection {} }
 
             Step {
                 name: "di-is-awesome",
@@ -131,7 +133,7 @@ fn App(cx: Scope) -> Element {
             Step {
                 name: "ddd-is-awesome",
                 y: next_row(),
-                x: (x_step * 6) - next_col(),
+                x: (x_step * 7) - next_col(),
                 rotate_z: 180,
                 DddIsAwesome {}
             }
@@ -139,7 +141,7 @@ fn App(cx: Scope) -> Element {
             Step {
                 name: "hex-arch",
                 y: row(),
-                x: (x_step * 6) - next_col(),
+                x: (x_step * 7) - next_col(),
                 rotate_z: 180,
                 HexagonalArchitecture {}
             }
@@ -147,7 +149,7 @@ fn App(cx: Scope) -> Element {
             Step {
                 name: "ports-adaptors",
                 y: row(),
-                x: (x_step * 6) - next_col(),
+                x: (x_step * 7) - next_col(),
                 rotate_z: 180,
                 PortsAndAdaptors {}
             }
@@ -155,7 +157,7 @@ fn App(cx: Scope) -> Element {
             Step {
                 name: "port-example",
                 y: row(),
-                x: (x_step * 6) - next_col(),
+                x: (x_step * 7) - next_col(),
                 rotate_z: 180,
                 PortExample {}
             }
@@ -163,7 +165,7 @@ fn App(cx: Scope) -> Element {
             Step {
                 name: "adaptor-example",
                 y: row(),
-                x: (x_step * 6) - next_col(),
+                x: (x_step * 7) - next_col(),
                 rotate_z: 180,
                 AdaptorExample {}
             }
@@ -198,7 +200,7 @@ fn App(cx: Scope) -> Element {
 
             Step { name: "int-tests-for-stubs", y: row(), x: next_col(), IntegrationTestsForStubAdaptors {} }
 
-            Step { name: "conclusion", y: next_row(), x: next_col(), Conclusion {} }
+            Step { name: "conclusion", y: next_row(), x: {next_col();next_col();next_col()}, Conclusion {} }
 
             Step {
                 name: "conclusion-1",
@@ -233,10 +235,10 @@ fn App(cx: Scope) -> Element {
 
             Step {
                 name: "where-to-find",
-                y: row(),
-                x: col(),
-                class: "stack",
-                transition_duration: 0,
+                class: "final",
+                y: max_row() / 2 + (2 * y_step),
+                x: max_col() / 2 + (1 * x_step),
+                scale: 8,
                 WhereToFind {}
             }
         }
