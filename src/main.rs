@@ -60,7 +60,7 @@ fn App(cx: Scope) -> Element {
     let max_col = || auto_pos.borrow().max_col() * x_step;
 
     cx.render(rsx! {
-        ImpressGroup { width: width + width_buffer, height: height + height_buffer,
+        ImpressGroup { width: width, height: height,
             Step { name: "intro", y: next_row(), x: {next_col(); next_col();next_col();next_col()}, Intro {} }
 
             Step { name: "unit-tests-are-awesome", y: next_row(), x: {next_col(); next_col(); next_col()}, UnitTests {} }
