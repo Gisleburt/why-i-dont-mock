@@ -1,6 +1,6 @@
 use crate::code::Typescript;
 use crate::impress::Notes;
-use crate::mermaid::Mermaid;
+
 use dioxus::prelude::*;
 use indoc::indoc;
 
@@ -22,13 +22,10 @@ pub fn DddIsAwesome(cx: Scope) -> Element {
 pub fn HexagonalArchitecture(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Hexagonal Architecture" }
-        Mermaid {
-            indoc! {"
-                flowchart LR
-                    app{{ Application }}
-                    ext[( External 'Stuff' )]
-                    app --?--> ext
-            "}
+        img {
+            src: "images/how-to-communicate.png",
+            alt: "How does a web server talk to a database?",
+            style: "width: 400px"
         }
         Notes {
             p { "Hexagonal architecture is... a terrible name for a brilliant idea" }
@@ -60,17 +57,10 @@ pub fn HexagonalArchitecture(cx: Scope) -> Element {
 pub fn PortsAndAdaptors(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Ports and Adaptors" }
-        Mermaid {
-            indoc! { "
-                flowchart LR
-                    app{{ Application }}
-                    port[[ Port ]]
-                    adpt> Adaptor ]
-                    ext[( External 'Stuff' )]
-                    app --- port
-                    port --> adpt
-                    adpt --> ext
-            " }
+        img {
+            src: "images/ports-and-adaptors.png",
+            alt: "Using ports and adaptors to separate coupled code",
+            style: "width: 400px"
         }
         Notes {
             p { "The two key parts of hexagonal architecture are ports and adaptors" }
@@ -104,15 +94,13 @@ pub fn PortExample(cx: Scope) -> Element {
             indoc! { "
                 interface UserStore {
                     async create(user: User) => Promise<void>;
-
+            
                     async readByEmail(email: String) => Promise<User>;
                 }
             " }
         }
 
-        Notes {
-            p { "Here we've made User Store just an interface" }
-        }
+        Notes { p { "Here we've made User Store just an interface" } }
     ))
 }
 pub fn AdaptorExample(cx: Scope) -> Element {
@@ -122,12 +110,12 @@ pub fn AdaptorExample(cx: Scope) -> Element {
             indoc! { "
                 class PostgresUserStore implements UserStore {
                     constructor(private db: Database) {}
-
+            
                     async create(user: User): Promise<void> {
                         const dbUser = userToDb(user);
                         await this.db.insert(dbUser);
                     }
-
+            
                     async readByEmail(email: String): Promise<User> {
                         const dbUser = await this.db.select('email', email);
                         return userFromDb(dbUser);

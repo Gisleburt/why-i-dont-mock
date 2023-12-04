@@ -1,24 +1,14 @@
-use crate::{code::Typescript, impress::Notes, mermaid::Mermaid};
+use crate::{code::Typescript, impress::Notes};
 use dioxus::prelude::*;
 use indoc::indoc;
 
 pub fn StubAdaptors(cx: Scope) -> Element {
     cx.render(rsx!(
         h2 { "Stub Adaptors" }
-        Mermaid {
-            indoc! { "
-                flowchart LR
-                    app{{ Application }}
-                    port[[ Port ]]
-                    apt> Adaptor ]
-                    ext[( External 'Stuff' )]
-                    stub>Stub Adaptor]
-                    
-                    app --- port
-                    port --> apt
-                    port --> stub
-                    apt --> ext
-            " }
+        img {
+            src: "images/stub-adaptors.png",
+            alt: "Create an adaptor for a port that doesn't talk to anything",
+            style: "width: 400px"
         }
         Notes {
             p { "Stub Adaptors" }

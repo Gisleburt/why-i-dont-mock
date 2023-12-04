@@ -2,7 +2,6 @@
 
 mod code;
 mod impress;
-mod mermaid;
 mod pos;
 mod slides;
 
@@ -20,7 +19,6 @@ use crate::slides::unit_tests::{UnitTestCode, UnitTestsAreAwesome};
 use crate::{
     code::HighlightInit,
     impress::{ImpressGroup, ImpressInit, Step},
-    mermaid::MermaidInit,
     pos::AutoReposition,
     slides::{
         di::{
@@ -179,6 +177,5 @@ fn App(cx: Scope) -> Element {
         }
         ImpressInit {}
         HighlightInit {}
-        MermaidInit {}
     })
 }

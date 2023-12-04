@@ -1,15 +1,16 @@
-use crate::{code::Typescript, impress::Notes, mermaid::Mermaid};
+use crate::{code::Typescript, impress::Notes};
 use dioxus::prelude::*;
 use indoc::indoc;
 
 pub fn ExternalSystems(cx: Scope) -> Element {
     cx.render(rsx!(
         h2 { "External Systems" }
-        Mermaid { "
-            graph LR
-                A[App] --> B[Data Store]
-        " }
-        Notes { 
+        img {
+            src: "images/external-systems.png",
+            alt: "Web Server talking to Database",
+            style: "width: 400px"
+        }
+        Notes {
             p {
                 indoc! { "
                     Our systems rarely exist in isolation and often have to talk to external
@@ -25,7 +26,7 @@ pub fn ExternalSystems(cx: Scope) -> Element {
 pub fn Communicating(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Example Database CRUD" }
-        Typescript { 
+        Typescript {
             indoc! { "
                 class UserStore {
                     constructor(private db: Database) {}
@@ -42,7 +43,7 @@ pub fn Communicating(cx: Scope) -> Element {
                 }
             " }
         }
-        Notes { 
+        Notes {
             p {
                 indoc! { "
                     That user object from before, lets say we want to be able to create and read
@@ -77,7 +78,7 @@ pub fn IntegrationTests(cx: Scope) -> Element {
             "Integration Tests "
             span { class: "hide", "are Awesome" }
         }
-        Notes { 
+        Notes {
             p { "Integration tests are awesome" }
             p { "I'm predictable" }
             p {
@@ -94,7 +95,7 @@ pub fn IntegrationTests(cx: Scope) -> Element {
 pub fn IntegrationTestsAreAwesome(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Integration Tests are Awesome" }
-        Notes { 
+        Notes {
             p { "Integration tests are awesome" }
             p { "I'm predictable" }
             p {
@@ -111,7 +112,7 @@ pub fn IntegrationTestsAreAwesome(cx: Scope) -> Element {
 pub fn IntegrationTestExample(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Example Integration Test" }
-        Typescript { 
+        Typescript {
             indoc! { "
                 const email = randomEmail();
                 const userStore = new UserStore(dbConnection);
@@ -127,7 +128,7 @@ pub fn IntegrationTestExample(cx: Scope) -> Element {
                 });
             " }
         }
-        Notes { 
+        Notes {
             p { "Ok, I know, these are a little contrived" }
             p {
                 indoc! { "
