@@ -45,8 +45,6 @@ fn App(cx: Scope) -> Element {
     let height = 720;
     let width = 1280;
     let margin = 100;
-    let height_buffer = (margin / 10) * 9 * 3;
-    let width_buffer = (margin / 10) * 16 * 3;
     let y_step = height + margin;
     let x_step = width + margin;
 
@@ -61,9 +59,28 @@ fn App(cx: Scope) -> Element {
 
     cx.render(rsx! {
         ImpressGroup { width: width, height: height,
-            Step { name: "intro", y: next_row(), x: {next_col(); next_col();next_col();next_col()}, Intro {} }
+            Step {
+                name: "intro",
+                y: next_row(),
+                x: {
+                    next_col();
+                    next_col();
+                    next_col();
+                    next_col()
+                },
+                Intro {}
+            }
 
-            Step { name: "unit-tests-are-awesome", y: next_row(), x: {next_col(); next_col(); next_col()}, UnitTests {} }
+            Step {
+                name: "unit-tests-are-awesome",
+                y: next_row(),
+                x: {
+                    next_col();
+                    next_col();
+                    next_col()
+                },
+                UnitTests {}
+            }
 
             Step {
                 name: "unit-tests-are-awesome-reveal",
@@ -87,7 +104,15 @@ fn App(cx: Scope) -> Element {
                 UnitTestExample {}
             }
 
-            Step { name: "external-systems", y: next_row(), x: { next_col(); next_col() }, ExternalSystems {} }
+            Step {
+                name: "external-systems",
+                y: next_row(),
+                x: {
+                    next_col();
+                    next_col()
+                },
+                ExternalSystems {}
+            }
 
             Step { name: "external-systems-interface", y: row(), x: next_col(), Communicating {} }
 
@@ -104,7 +129,16 @@ fn App(cx: Scope) -> Element {
 
             Step { name: "integration-test-example", y: row(), x: next_col(), IntegrationTestExample {} }
 
-            Step { name: "di", y: next_row(), x: {next_col(); next_col(); next_col()}, DependencyInjection {} }
+            Step {
+                name: "di",
+                y: next_row(),
+                x: {
+                    next_col();
+                    next_col();
+                    next_col()
+                },
+                DependencyInjection {}
+            }
 
             Step {
                 name: "di-is-awesome",
@@ -200,7 +234,16 @@ fn App(cx: Scope) -> Element {
 
             Step { name: "int-tests-for-stubs", y: row(), x: next_col(), IntegrationTestsForStubAdaptors {} }
 
-            Step { name: "conclusion", y: next_row(), x: {next_col();next_col();next_col()}, Conclusion {} }
+            Step {
+                name: "conclusion",
+                y: next_row(),
+                x: {
+                    next_col();
+                    next_col();
+                    next_col()
+                },
+                Conclusion {}
+            }
 
             Step {
                 name: "conclusion-1",
