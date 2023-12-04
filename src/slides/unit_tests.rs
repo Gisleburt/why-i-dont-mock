@@ -12,7 +12,7 @@ pub fn UnitTests(cx: Scope) -> Element {
         Notes { p { "Unit Tests..." } }
     ))
 }
-pub fn AreAwesome(cx: Scope) -> Element {
+pub fn UnitTestsAreAwesome(cx: Scope) -> Element {
     cx.render(rsx!(
         h2 { "Unit Tests are Awesome" }
         Notes { 

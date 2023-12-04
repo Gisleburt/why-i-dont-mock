@@ -71,6 +71,26 @@ pub fn Communicating(cx: Scope) -> Element {
     ))
 }
 
+pub fn IntegrationTests(cx: Scope) -> Element {
+    cx.render(rsx!(
+        h3 {
+            "Integration Tests "
+            span { class: "hide", "are Awesome" }
+        }
+        Notes { 
+            p { "Integration tests are awesome" }
+            p { "I'm predictable" }
+            p {
+                indoc! { "
+                    As this is the part of how we communicate with the database (and assuming those
+                    other functions were unit tested), this makes sense to test against a real
+                    database
+                " }
+            }
+        }
+    ))
+}
+
 pub fn IntegrationTestsAreAwesome(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Integration Tests are Awesome" }
@@ -79,7 +99,7 @@ pub fn IntegrationTestsAreAwesome(cx: Scope) -> Element {
             p { "I'm predictable" }
             p {
                 indoc! { "
-                    As this is the part of how we communicate with the database (and assuming those 
+                    As this is the part of how we communicate with the database (and assuming those
                     other functions were unit tested), this makes sense to test against a real
                     database
                 " }
@@ -90,7 +110,7 @@ pub fn IntegrationTestsAreAwesome(cx: Scope) -> Element {
 
 pub fn IntegrationTestExample(cx: Scope) -> Element {
     cx.render(rsx!(
-        h3 { "Integration Tests are Awesome" }
+        h3 { "Example Integration Test" }
         Typescript { 
             indoc! { "
                 const email = randomEmail();

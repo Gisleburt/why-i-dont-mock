@@ -7,7 +7,7 @@ use indoc::indoc;
 pub fn DddIsAwesome(cx: Scope) -> Element {
     cx.render(rsx!(
         h2 { "DDD is Awesome" }
-        Notes { 
+        Notes {
             p { "Domain Drive Development is awesome" }
             p {
                 indoc! { "
@@ -22,7 +22,7 @@ pub fn DddIsAwesome(cx: Scope) -> Element {
 pub fn HexagonalArchitecture(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Hexagonal Architecture" }
-        Mermaid { 
+        Mermaid {
             indoc! {"
                 flowchart LR
                     app{{ Application }}
@@ -30,7 +30,7 @@ pub fn HexagonalArchitecture(cx: Scope) -> Element {
                     app --?--> ext
             "}
         }
-        Notes { 
+        Notes {
             p { "Hexagonal architecture is... a terrible name for a brilliant idea" }
             p {
                 indoc! {"
@@ -60,7 +60,7 @@ pub fn HexagonalArchitecture(cx: Scope) -> Element {
 pub fn PortsAndAdaptors(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Ports and Adaptors" }
-        Mermaid { 
+        Mermaid {
             indoc! { "
                 flowchart LR
                     app{{ Application }}
@@ -72,11 +72,11 @@ pub fn PortsAndAdaptors(cx: Scope) -> Element {
                     adpt --> ext
             " }
         }
-        Notes { 
+        Notes {
             p { "The two key parts of hexagonal architecture are ports and adaptors" }
             p {
                 indoc! {"
-                    On the left we have our application, on the right some external service like a 
+                    On the left we have our application, on the right some external service like a
                     database or API.
                 " }
             }
@@ -90,36 +90,44 @@ pub fn PortsAndAdaptors(cx: Scope) -> Element {
             p {
                 indoc! {"
                     The adaptor is the implementation of that interface. Lets go back to our code
-                    examples. 
+                    examples.
                 " }
             }
         }
     ))
 }
 
-pub fn OurPortAndAdaptor(cx: Scope) -> Element {
+pub fn PortExample(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "Port Example" }
-        Typescript { 
+        Typescript {
             indoc! { "
                 interface UserStore {
                     async create(user: User) => Promise<void>;
-            
+
                     async readByEmail(email: String) => Promise<User>;
                 }
             " }
         }
+
+        Notes {
+            p { "Here we've made User Store just an interface" }
+        }
+    ))
+}
+pub fn AdaptorExample(cx: Scope) -> Element {
+    cx.render(rsx!(
         h3 { "Adaptor Example" }
-        Typescript { 
+        Typescript {
             indoc! { "
                 class PostgresUserStore implements UserStore {
                     constructor(private db: Database) {}
-            
+
                     async create(user: User): Promise<void> {
                         const dbUser = userToDb(user);
                         await this.db.insert(dbUser);
                     }
-            
+
                     async readByEmail(email: String): Promise<User> {
                         const dbUser = await this.db.select('email', email);
                         return userFromDb(dbUser);
@@ -127,14 +135,9 @@ pub fn OurPortAndAdaptor(cx: Scope) -> Element {
                 }
             " }
         }
-        Notes { 
-            p {
-                indoc! {"
-                    Here we've made User Store just an interface, and moved the implementation to a
-                    class that implements that interface.
-                " }
-            }
-            p { "Great, hexagonal architecture... how the hell does that help" }
+        Notes {
+            p { "And moved the implementation to a class that implements that interface." }
+            p { "Great, we've got hexagonal architecture... how the hell does that help" }
         }
     ))
 }

@@ -35,9 +35,19 @@ pub fn DependencyInjectionExample(cx: Scope) -> Element {
     ))
 }
 
+pub fn MockingIs(cx: Scope) -> Element {
+    cx.render(rsx!(
+        h3 {
+            "Mocking is "
+            span { class: "hide", "... erm" }
+        }
+        Notes { p { "Mocking is... lets come back to my opinion on that" } }
+    ))
+}
+
 pub fn MockingIsNotAwesome(cx: Scope) -> Element {
     cx.render(rsx!(
-        h3 { "Mocking is ..." }
+        h3 { "Mocking is ... erm" }
         Notes { p { "Mocking is... lets come back to that" } }
     ))
 }

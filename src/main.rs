@@ -8,13 +8,15 @@ mod slides;
 
 use crate::slides::conclusion::{Bonus, Conclusion, ThankYou};
 use crate::slides::ddd::{
-    DddIsAwesome, HexagonalArchitecture, OurPortAndAdaptor, PortsAndAdaptors,
+    AdaptorExample, DddIsAwesome, HexagonalArchitecture, PortExample, PortsAndAdaptors,
 };
+use crate::slides::di::MockingIs;
+use crate::slides::external_systems::IntegrationTests;
 use crate::slides::stub_adaptors::{
     IntegrationTestsForStubAdaptors, MocksReview, StubAdaptorExample, StubAdaptorInTest,
     StubAdaptors, TestAllTheThings,
 };
-use crate::slides::unit_tests::{AreAwesome, UnitTestCode};
+use crate::slides::unit_tests::{UnitTestCode, UnitTestsAreAwesome};
 use crate::{
     code::HighlightInit,
     impress::{ImpressGroup, ImpressInit, Step},
@@ -67,7 +69,7 @@ fn App(cx: Scope) -> Element {
                 y: row(),
                 x: col(),
                 transition_duration: 0,
-                AreAwesome {}
+                UnitTestsAreAwesome {}
             }
 
             Step { name: "unit-tests-are-love", y: row(), x: next_col(), AreLoved {} }
@@ -87,7 +89,16 @@ fn App(cx: Scope) -> Element {
 
             Step { name: "external-systems-interface", y: row(), x: next_col(), Communicating {} }
 
-            Step { name: "int-tests-are-awesome", y: row(), x: next_col(), IntegrationTestsAreAwesome {} }
+            Step { name: "int-tests-are-awesome", y: row(), x: next_col(), IntegrationTests {} }
+
+            Step {
+                name: "int-tests-are-awesome-reveal",
+                class: "stack",
+                y: row(),
+                x: col(),
+                transition_duration: 0,
+                IntegrationTestsAreAwesome {}
+            }
 
             Step { name: "integration-test-example", y: row(), x: next_col(), IntegrationTestExample {} }
 
@@ -95,14 +106,23 @@ fn App(cx: Scope) -> Element {
 
             Step { name: "di-example", y: row(), x: next_col(), DependencyInjectionExample {} }
 
-            Step { name: "mocking", y: row(), x: next_col(), MockingIsNotAwesome {} }
+            Step { name: "mocking-is", y: row(), x: next_col(), MockingIs {} }
+
+            Step {
+                name: "mocking-is-umm",
+                class: "stack",
+                y: row(),
+                x: col(),
+                transition_duration: 0,
+                MockingIsNotAwesome {}
+            }
 
             Step { name: "mocking-example", y: row(), x: next_col(), MockingExample {} }
 
             Step {
                 name: "ddd-is-awesome",
                 y: next_row(),
-                x: (x_step * 5) - next_col(),
+                x: (x_step * 6) - next_col(),
                 rotate_z: 180,
                 DddIsAwesome {}
             }
@@ -110,7 +130,7 @@ fn App(cx: Scope) -> Element {
             Step {
                 name: "hex-arch",
                 y: row(),
-                x: (x_step * 5) - next_col(),
+                x: (x_step * 6) - next_col(),
                 rotate_z: 180,
                 HexagonalArchitecture {}
             }
@@ -118,17 +138,25 @@ fn App(cx: Scope) -> Element {
             Step {
                 name: "ports-adaptors",
                 y: row(),
-                x: (x_step * 5) - next_col(),
+                x: (x_step * 6) - next_col(),
                 rotate_z: 180,
                 PortsAndAdaptors {}
             }
 
             Step {
-                name: "ddd-example",
+                name: "port-example",
                 y: row(),
-                x: (x_step * 5) - next_col(),
+                x: (x_step * 6) - next_col(),
                 rotate_z: 180,
-                OurPortAndAdaptor {}
+                PortExample {}
+            }
+
+            Step {
+                name: "adaptor-example",
+                y: row(),
+                x: (x_step * 6) - next_col(),
+                rotate_z: 180,
+                AdaptorExample {}
             }
 
             Step { name: "stub-adaptors", y: next_row(), x: next_col(), StubAdaptors {} }
