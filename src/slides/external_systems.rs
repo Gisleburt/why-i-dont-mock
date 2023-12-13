@@ -90,9 +90,9 @@ pub fn IntegrationTestsAreAwesome(cx: Scope) -> Element {
             p { "I'm predictable" }
             p {
                 indoc! { "
-                    As this is the part of how we communicate with the database (and assuming those
-                    other functions were unit tested), this makes sense to test against a real
-                    database
+                    Because our User Store class needs to talk to the database we can't unit test it
+                    but we can write an integration test under the assumption the test will talk to
+                    some sort of database
                 " }
             }
         }

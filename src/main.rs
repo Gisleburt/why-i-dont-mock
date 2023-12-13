@@ -6,7 +6,8 @@ mod pos;
 mod slides;
 
 use crate::slides::conclusion::{
-    Bonus, Conclusion, ConclusionOne, ConclusionThree, ConclusionTwo, ThankYou, WhereToFind,
+    BonusLocalDev, BonusLocalDevStub, BonusProduction, BonusProductionReveal, Conclusion,
+    ConclusionOne, ConclusionThree, ConclusionTwo, ThankYou, WhereToFind,
 };
 use crate::slides::ddd::{
     AdaptorExample, DddIsAwesome, HexagonalArchitecture, PortExample, PortsAndAdaptors,
@@ -239,7 +240,6 @@ fn App(cx: Scope) -> Element {
                 y: next_row(),
                 x: {
                     next_col();
-                    next_col();
                     next_col()
                 },
                 Conclusion {}
@@ -272,7 +272,27 @@ fn App(cx: Scope) -> Element {
                 ConclusionThree {}
             }
 
-            Step { name: "bonus-use", y: row(), x: next_col(), Bonus {} }
+            Step { name: "bonus-local-dev", y: row(), x: next_col(), BonusLocalDev {} }
+
+            Step {
+                name: "bonus-local-dev-stub",
+                class: "stack",
+                y: row(),
+                x: col(),
+                transition_duration: 0,
+                BonusLocalDevStub {}
+            }
+
+            Step { name: "bonus-production", y: row(), x: next_col(), BonusProduction {} }
+
+            Step {
+                name: "bonus-production-cronjob",
+                class: "stack",
+                y: row(),
+                x: col(),
+                transition_duration: 0,
+                BonusProductionReveal {}
+            }
 
             Step { name: "thank-you", y: row(), x: next_col(), ThankYou {} }
 
