@@ -12,11 +12,14 @@ use crate::slides::conclusion::{
 use crate::slides::ddd::{
     AdaptorExample, DddIsAwesome, HexagonalArchitecture, PortExample, PortsAndAdaptors,
 };
-use crate::slides::di::{DependencyInjectionIsAwesome, MockingIs};
+use crate::slides::di::{
+    DependencyInjectionIsAwesome, MockingIs, MocksReview, MocksReviewOne, MocksReviewTwo,
+};
 use crate::slides::external_systems::IntegrationTests;
 use crate::slides::stub_adaptors::{
-    IntegrationTestsForStubAdaptors, MocksReview, MocksReviewOne, MocksReviewTwo,
-    StubAdaptorExample, StubAdaptorInTest, StubAdaptors, TestAllTheThings,
+    IntegrationTestsForStubAdaptors, StubAdaptorExample, StubAdaptorInTest, StubAdaptors,
+    StubAdaptorsReview, StubAdaptorsReviewAfterTests, StubAdaptorsReviewOne, StubAdaptorsReviewTwo,
+    TestAllTheThings,
 };
 use crate::slides::unit_tests::{UnitTestCode, UnitTestsAreAwesome};
 use crate::{
@@ -135,7 +138,6 @@ fn App(cx: Scope) -> Element {
                 y: next_row(),
                 x: {
                     next_col();
-                    next_col();
                     next_col()
                 },
                 DependencyInjection {}
@@ -164,6 +166,26 @@ fn App(cx: Scope) -> Element {
             }
 
             Step { name: "mocking-example", y: row(), x: next_col(), MockingExample {} }
+
+            Step { name: "mocks-in-review", y: row(), x: next_col(), MocksReview {} }
+
+            Step {
+                name: "mocks-in-review-1",
+                class: "stack",
+                y: row(),
+                x: col(),
+                transition_duration: 0,
+                MocksReviewOne {}
+            }
+
+            Step {
+                name: "mocks-in-review-2",
+                class: "stack",
+                y: row(),
+                x: col(),
+                transition_duration: 0,
+                MocksReviewTwo {}
+            }
 
             Step {
                 name: "ddd-is-awesome",
@@ -211,7 +233,7 @@ fn App(cx: Scope) -> Element {
 
             Step { name: "stub-adaptors-in-tests", y: row(), x: next_col(), StubAdaptorInTest {} }
 
-            Step { name: "stub-adaptors-vs-mocks", y: row(), x: next_col(), MocksReview {} }
+            Step { name: "stub-adaptors-vs-mocks", y: row(), x: next_col(), StubAdaptorsReview {} }
 
             Step {
                 name: "stub-adaptors-vs-mocks-1",
@@ -219,7 +241,7 @@ fn App(cx: Scope) -> Element {
                 y: row(),
                 x: col(),
                 transition_duration: 0,
-                MocksReviewOne {}
+                StubAdaptorsReviewOne {}
             }
 
             Step {
@@ -228,12 +250,14 @@ fn App(cx: Scope) -> Element {
                 y: row(),
                 x: col(),
                 transition_duration: 0,
-                MocksReviewTwo {}
+                StubAdaptorsReviewTwo {}
             }
 
             Step { name: "test-all-the-things", y: row(), x: next_col(), TestAllTheThings {} }
 
             Step { name: "int-tests-for-stubs", y: row(), x: next_col(), IntegrationTestsForStubAdaptors {} }
+
+            Step { name: "stub-adaptors-after-tests", y: row(), x: next_col(), StubAdaptorsReviewAfterTests {} }
 
             Step {
                 name: "conclusion",
@@ -300,7 +324,7 @@ fn App(cx: Scope) -> Element {
                 name: "where-to-find",
                 class: "final",
                 y: max_row() / 2 + y_step,
-                x: max_col() / 2 + x_step,
+                x: max_col() / 2 + (x_step / 2),
                 scale: 9,
                 WhereToFind {}
             }

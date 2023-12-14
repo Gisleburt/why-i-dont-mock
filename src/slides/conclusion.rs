@@ -46,9 +46,9 @@ pub fn ConclusionThree(cx: Scope) -> Element {
             li { "🤝 DDD paradigms can extend to testing" }
             li { "❤️ Daniel Loves Tests" }
         }
-        Notes {
+        Notes { 
             p { "I love testing" }
-            p { "But... before we go... how about some bonus usages?" }
+            p { "But wait... that's not all these little scoundrels can be used for" }
         }
     ))
 }
@@ -61,7 +61,7 @@ pub fn BonusLocalDev(cx: Scope) -> Element {
             alt: "Local dev with microservices and database",
             style: "width: 800px"
         }
-        Notes {
+        Notes { 
             p { "First and perhaps most obviously relates to local development" }
             p { "In a microservice ecosystem we try to build many small systems" }
             p { "However because these systems depend on each other what do you do locally?" }
@@ -81,7 +81,7 @@ pub fn BonusLocalDevStub(cx: Scope) -> Element {
             alt: "Local dev with microservices and database",
             style: "width: 800px"
         }
-        Notes {
+        Notes { 
             p {
                 p { "Stub Adaptors!" }
                 p { "We tested them against the real adaptors" }
@@ -114,7 +114,7 @@ pub fn BonusProduction(cx: Scope) -> Element {
             alt: "Local dev with microservices and database",
             style: "width: 600px"
         }
-        Notes {
+        Notes { 
             p { "I lied!" }
             p { "You can, and I have, totally used these in production" }
             p { "But maybe not how you'd expect" }
@@ -131,7 +131,7 @@ pub fn BonusProductionReveal(cx: Scope) -> Element {
             alt: "Local dev with microservices and database",
             style: "width: 600px"
         }
-        Notes {
+        Notes { 
             p { "In this case we were reading csvs from AWS S3" }
             p { "We needed to report on the data in the CSV" }
             p { "And once complete move the CSV to another bucket" }
@@ -161,7 +161,7 @@ pub fn WhereToFind(cx: Scope) -> Element {
             "Find these slides at "
             a { href: "https://why-i-dont-mock.danielmason.com", "why-i-dont-mock.danielmason.com" }
         }
-        Notes {
+        Notes { 
             p { "Thank you for your time, I've been Daniel" }
             p { "If you want to look through these slides later, you can find them on" }
             p { "why i dont mock dot daniel mason dot com" }

@@ -88,34 +88,34 @@ pub fn StubAdaptorInTest(cx: Scope) -> Element {
     ))
 }
 
-pub fn MocksReview(cx: Scope) -> Element {
+pub fn StubAdaptorsReview(cx: Scope) -> Element {
     cx.render(rsx!(
-        h3 { " Did we fix mocks" }
+        h3 { "Did we fix mocks" }
         ol {
             li { span { class: "hide", "✅ Behavioural abstraction removed from the test" } }
-            li { span { class: "hide", "❌ Behavioural abstraction matches the other store" } }
+            li { span { class: "hide", "❌ Behavioural abstraction might be wrong" } }
         }
         Notes { p { "So, sid we fix mocks?" } }
     ))
 }
 
-pub fn MocksReviewOne(cx: Scope) -> Element {
+pub fn StubAdaptorsReviewOne(cx: Scope) -> Element {
     cx.render(rsx!(
-        h3 { " Did we fix mocks" }
+        h3 { "Did we fix mocks" }
         ol {
             li { "✅ Behavioural abstraction removed from the test" }
-            li { span { class: "hide", "❌ Behavioural abstraction matches the other store" } }
+            li { span { class: "hide", "❌ Behavioural abstraction might be wrong" } }
         }
         Notes { p { "We did manage to remove our behavioural abstraction from our tests" } }
     ))
 }
 
-pub fn MocksReviewTwo(cx: Scope) -> Element {
+pub fn StubAdaptorsReviewTwo(cx: Scope) -> Element {
     cx.render(rsx!(
-        h3 { " Did we fix mocks" }
+        h3 { "Did we fix mocks" }
         ol {
             li { "✅ Behavioural abstraction removed from the test" }
-            li { "❌ Behavioural abstraction matches the other store" }
+            li { "❌ Behavioural abstraction might be wrong" }
         }
         Notes {
             p { "But we haven't confirmed that our behavioural abstraction matches the real thing" }
@@ -182,10 +182,23 @@ pub fn IntegrationTestsForStubAdaptors(cx: Scope) -> Element {
                     too!
                 " }
             }
+        }
+    ))
+}
+
+pub fn StubAdaptorsReviewAfterTests(cx: Scope) -> Element {
+    cx.render(rsx!(
+        h3 { "Did we fix mocks" }
+        ol {
+            li { "✅ Behavioural abstraction removed from the test" }
+            li { "✅ Behavioural abstraction is \"correct\"" }
+        }
+        Notes {
             p {
                 indoc! { "
-                    So now everything is tested, the computer tells Daniel he is good, and Daniel is
-                    happy
+                    And with that, we're now confident that our abstraction behaves the same way as
+                    our real world adaptor, everything is tested, the computer tells Daniel is good
+                    and Daniel is happy!
                 " }
             }
         }

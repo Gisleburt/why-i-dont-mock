@@ -101,19 +101,54 @@ pub fn MockingExample(cx: Scope) -> Element {
                 " }
             }
             p { "You can probably tell that... I do not think this is awesome" }
+        }
+    ))
+}
+
+pub fn MocksReview(cx: Scope) -> Element {
+    cx.render(rsx!(
+        h3 { "Whats wrong with mocks" }
+        ol {
+            li { span { class: "hide", "❌ Behavioural abstraction in the test" } }
+            li { span { class: "hide", "❌ Behavioural abstraction might be wrong" } }
+        }
+        Notes { p { "What's wrong with mocks" } }
+    ))
+}
+
+pub fn MocksReviewOne(cx: Scope) -> Element {
+    cx.render(rsx!(
+        h3 { "Whats wrong with mocks" }
+        ol {
+            li { "❌ Behavioural abstraction in the test" }
+            li { span { class: "hide", "❌ Behavioural abstraction might be wrong" } }
+        }
+        Notes {
             p {
                 indoc! { "
                     First, we've written a behavioural abstraction into the test. We're going to
                     need to repeat this every single time we test code that uses this store.
                 " }
             }
+        }
+    ))
+}
+
+pub fn MocksReviewTwo(cx: Scope) -> Element {
+    cx.render(rsx!(
+        h3 { "Whats wrong with mocks" }
+        ol {
+            li { "❌ Behavioural abstraction in the test" }
+            li { "❌ Behavioural abstraction might be wrong" }
+        }
+        Notes {
             p {
                 indoc! { "
                     Second, there's no guarantee this behavioural abstraction will actually behave
                     correctly. It might even change in the future and then we have to hope our tests
                     correctly start failing and then go change everywhere our mocks are now wrong.
                     This might seem unlikely but I've seen test doubles return things in the wrong
-                    order before, and that's enough to cause a problem. 
+                    order before, and that's been enough to cause a problem. 
                 " }
             }
             p { "Lets take a break from testing and talk about something else" }
