@@ -6,6 +6,7 @@ asset_dir = "public"
 
 [web.app]
 title = "Why I don't mock"
+base_path = "why-i-dont-mock"
 
 [web.watcher]
 watch_path = ["src", "public"]
