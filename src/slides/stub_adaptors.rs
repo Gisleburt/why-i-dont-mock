@@ -71,7 +71,7 @@ pub fn StubAdaptorInTest(cx: Scope) -> Element {
                     const userStore = new StubUserStore();
             
                     const user = createUser({ casualName: Daniel, email: randomEmail() });
-                    expect(await firstTimeUser(user)).toBe('Welcome Daniel');
+                    expect(await firstTimeUser(userStore, user)).toBe('Welcome Daniel');
             
                     const storedUser = await userStore.readByEmail(user.email);
                     expect(storedUser).toEqual(user);
@@ -148,7 +148,7 @@ pub fn IntegrationTestsForStubAdaptors(cx: Scope) -> Element {
                 const stubStore = new StubUserStore();
                 const email = randomEmail();
             
-                describe.each([pgStore, stubStore])('UserStore', () => {
+                describe.each([pgStore, stubStore])('UserStore', (userStore) => {
                     it('should store the user', async () => {
                         const user = createUser({ email });
                         await expect(userStore.create(user)).resolves.not.toThrow()
