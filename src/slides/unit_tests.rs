@@ -26,7 +26,7 @@ pub fn AreLoved(cx: Scope) -> Element {
     cx.render(rsx!(
         h3 { "I love unit tests" }
         img {
-            src: "/images/glomp-unit-tests-2-short-and-sweet.gif",
+            src: "images/glomp-unit-tests-2-short-and-sweet.gif",
             alt: "Daniel glomping Unit Tests",
             style: "width: 400px; padding-left: 70px; image-rendering: crisp-edges;"
         }
