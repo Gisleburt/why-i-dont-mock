@@ -160,6 +160,9 @@ pub fn WhereToFind(cx: Scope) -> Element {
         p {
             "Find these slides at "
             a { href: "https://danielmason.com/why-i-dont-mock", "danielmason.com/why-i-dont-mock" }
+            br {}
+            "See more of me on YouTube "
+            a { href: "https://www.youtube.com/@FiosQuest", "youtube.com/@FiosQuest" }
         }
         Notes {
             p { "Thank you for your time, I've been Daniel" }
